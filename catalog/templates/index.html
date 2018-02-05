@@ -1,0 +1,26 @@
+{% extends "base_generic.html" %}
+
+{% block head %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="index-container">
+    <div class="center-container">
+        <div class="center-index-container">
+            <h1>T'endinses a l'<span class="dynamic-style">aventura</span>?</h1>
+        </div>
+
+        <div class="center-navbar-container">
+            <button class="option" onclick="document.location.href='{% url 'trips' %}'"> <span class="glyphicon glyphicon-book"></span> Viatges</button>
+            <button class="option" onclick="document.location.href='{% url 'countries' %}'"> <span class="glyphicon glyphicon-globe"></span> Països</button>
+            <button class="option" onclick="document.location.href='{% url 'redactors' %}'"> <span class="glyphicon glyphicon-user"></span> Redactors</button>
+        </div>
+    </div>
+
+</div>
+
+
+{% endblock %}

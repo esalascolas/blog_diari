@@ -1,0 +1,41 @@
+{% extends "base_generic.html" %}
+
+{% block head %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/css/tripList.css' %}">
+{% endblock %}
+
+{% block content %}
+
+
+
+   <div class="paisos-hero-image">
+        <div class="paisos-hero-text">
+            <h1>Atreveix-te</h1>
+        </div>
+    </div>
+
+    {% if trip_list %}
+    <div class="col-xs-12 contenidor-llistat-vaitges">
+      {% for trip in trip_list %}
+      <div class="col-xs-12 col-sm-6 col-md-4 element-llistat-viatges">
+          <div class="col-xs-12 contenidor-viatge">
+              <div class="tag-redactor-viatge"><span class="glyphicon glyphicon-user" > </span> {{trip.display_redactor}}</div>
+              <div class="col-xs-12 contenidor-imatge-viatge" >
+                  <div class="imatge-viatge"  style="background-image: url(/static{{trip.route_trip_image}})" ></div>
+              </div>
+              <div class="col-xs-12 titol-viatge">
+                    <a href="{{ trip.get_absolute_url }}">{{ trip.title }}</a>
+              </div>
+              <div class="durada-viatge">Durada: {{trip.duration}} {% if trip.duration > 1 %} dies {% else %} dia {% endif %}</div>
+          </div>
+
+      </div>
+
+      {% endfor %}
+
+    </div>
+    {% else %}
+      <p>No hi han viatges a la llibreria.</p>
+    {% endif %}       
+{% endblock %}

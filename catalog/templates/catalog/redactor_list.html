@@ -1,0 +1,38 @@
+{% extends "base_generic.html" %}
+
+{% block head %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/css/redactorList.css' %}">
+{% endblock %}
+
+{% block content %}
+
+
+   <div class="redactors-hero-image">
+        <div class="redactors-hero-text">
+            <h1>Apassiona't</h1>
+        </div>
+    </div>
+
+    {% if redactor_list %}
+    <div class="col-xs-12 contenidor-llistat-vaitges">
+      {% for redactor in redactor_list %}
+      <div class="col-xs-12 col-sm-6 col-md-4 element-llistat-redactor">
+          <div class="col-xs-12 contenidor-redactor">
+              <div class="col-xs-12 contenidor-imatge-redactor" >
+                  <div class="imatge-redactor"  style="background-image: url(/static/images/{{ redactor.alias }}.jpg)" ></div>
+              </div>
+              <div class="col-xs-12 titol-redactor">
+                    <a href="{{ redactor.get_absolute_url }}">{{ redactor.alias }}</a>
+              </div>
+          </div>
+
+      </div>
+
+      {% endfor %}
+
+    </div>
+    {% else %}
+      <p>No hi han redactors a la llibreria.</p>
+    {% endif %}       
+{% endblock %}

@@ -1,0 +1,107 @@
+h1{
+
+    font-family: "Permanent Marker", sans-serif;
+    font-size: 85px;
+    color: #2f2f2b;
+}
+
+.dynamic-style{
+    text-transform: uppercase;
+    font-weight: 600;
+    color: #8e4941;
+}
+
+
+
+.index-container {
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: relative;
+}
+
+.index-container::after{
+    content: "";
+    background: url(/static/svg/full_index_image.svg) center no-repeat;
+    background-size: cover;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;
+}
+
+
+.center-container{
+    position: relative;
+    left: 50%;
+    top: 50%;
+    display: inline-block;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 100%;
+}
+.center-index-container{
+    width: 100%;
+    border-radius: 53px;
+    text-align: center;
+    display: inline-block;
+}
+
+.center-navbar-container{
+    margin: 108px auto;
+}
+
+
+.option{
+    width: 246px;
+    margin: 5px 28px;
+    text-align: center;
+    border-radius: 30px;
+    display: inline-block;
+    font-family: "Open Sans", fantasy;
+    font-size: 34px;
+    color: #e5e1d9;
+    padding: 4px 0 4px 0;
+    outline: none;
+    border: none;
+
+    background-image: linear-gradient(to left, #5d6d77 0%, #d2ad5a 51%, #d2ad5a 100%);;
+    background-size: 400% auto;
+    background-position: 100% 0;
+    transition: background-position 1.50s;
+}
+
+.option:hover {
+    background-position: 0 0;
+}
+
+
+@media screen and (max-width: 600px) {
+    h1 {
+        font-size: 60px
+    }
+}
+
+@media screen and (max-width: 430px) {
+    .center-navbar-container {
+        margin: 50px auto;
+    }
+
+    h1 {
+        font-size: 48px
+    }
+
+    .option{
+        font-size: 28px;
+        width: 180px;
+    }
+}
+
+
+@media screen and (max-width: 380px) {
+    h1 {
+        font-size: 41px
+    }
+}

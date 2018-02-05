@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  {% block title %}<title>Local Library</title>{% endblock %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+
+  <!-- Add additional CSS in static file -->
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Permanent+Marker" />
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
+
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  {% block head %}{%endblock %}
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+
+    {% url 'index' as index_url %}
+    {% if request.get_full_path != index_url %}
+    <div class="topnav" id="myTopnav">
+          <a href="{% url 'index' %}">Inici</a>
+          <a href="{% url 'trips' %}">Viatges</a>
+          <a href="{% url 'redactors' %}">Redactors</a>
+          <a href="{% url 'countries' %}">Països</a>
+          <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
+    </div>
+    {% endif %}
+
+
+    <div class="container-fluid no-margin">
+      {% block content %}{% endblock %}
+      {% block pagination %}
+      {% if is_paginated %}
+          <div class="pagination">
+                <span class="page-links">
+                  {% if page_obj.has_previous %}
+                      <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">previous</a>
+                  {% endif %}
+                  <span class="page-current">
+                      Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                  </span>
+                  {% if page_obj.has_next %}
+                      <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">next</a>
+                  {% endif %}
+              </span>
+          </div>
+      {% endif %}
+    {% endblock %}
+    </div>
+
+
+    <script language="JavaScript">
+        // Controls the navbar display mobile/pc
+        function myFunction() {
+            var x = document.getElementById("myTopnav")
+            if (x.className === "topnav") {
+                x.className += " responsive";
+            } else {
+                x.className = "topnav";
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+{% extends "base_generic.html" %}
+
+{% block head %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/tripDetails.css' %}">
+
+{% endblock%}
+
+{% block content %}
+
+<div class="trip-detail-hero-image" style="background: url(/static/images{{ trip.url_static|lower }}/hero.jpg) bottom no-repeat">
+    <div class="trip-detail-hero-text">
+          <h1>{{ trip.title }}</h1>
+    </div>
+</div>
+
+<div class="contenidor-dies">
+    <div class="resum-viatge">
+        {{ trip.summary | safe }}
+    </div>
+    <br>
+    {% for day in trip.dayinstance_set.all %}
+
+    <p><span class="titol-dia">{{day.title}}</span> | <strong>Dia:</strong> {{ forloop.counter }} </p>
+    <div class="paragrafs-dia">{{day.description | safe}}</div>
+    <hr>
+    {% endfor %}
+  </div>
+{% endblock %}
