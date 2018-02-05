@@ -87,7 +87,6 @@ class Redactor(models.Model):
 
 
 class Country(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text='Unique ID')
     country_name = models.CharField(max_length=100)
     country_code = models.CharField(max_length=3)
     url_imatge_bandera = models.CharField(max_length=500, default="")

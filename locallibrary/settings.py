@@ -27,7 +27,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'kperp@c57#%ecl9ykh^j1!pmrh_a*z
 
 DEBUG = bool(os.environ.get('DJANGO_DEBUG', True))
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['nameless-hamlet-96048.herokuapp.com']
 
 
 # Application definition
