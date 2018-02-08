@@ -1,6 +1,6 @@
 /*LLISTAT DE VIATGES*/
 
-.paisos-hero-image{
+.viatge-hero-image{
     width: 100%;
     background: url(/static/images/viatge.jpg) bottom no-repeat;
     background-size: cover;
@@ -9,20 +9,22 @@
     background-position: 50% 50%;
 }
 
-.paisos-hero-text{
+.viatge-hero-text{
     text-align: center;
     display: inline-block;
     position: relative;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    background: rgba(255,255,255,0.7);
+    width: 676px;
     color: #424242;
     padding: 0 30px 5px 30px;
     border-radius: 40px;
     font-family: 'Permanent Marker', sans-serif;
 }
 
-.paisos-hero-text h1{
+.viatge-hero-text h1{
     font-size: 65px;
     color: #8e4941;
 }
@@ -62,20 +64,29 @@
 
 
 @media screen and (max-width: 600px) {
-    .paisos-hero-text h1 {
-        font-size: 60px
+    .viatge-hero-text h1 {
+        font-size: 55px
+    }
+    .viatge-hero-text{
+        width: 420px;
     }
 }
 
 @media screen and (max-width: 430px) {
-    .paisos-hero-text h1 {
-        font-size: 48px
+    .viatge-hero-text h1 {
+        font-size: 45px
+    }
+    .viatge-hero-text{
+        width: 360px;
     }
 }
 
 
 @media screen and (max-width: 380px) {
-    .paisos-hero-text h1 {
-        font-size: 41px
+    .viatge-hero-text h1 {
+        font-size: 40px
+    }
+    .viatge-hero-text{
+        width: 320px;
     }
 }

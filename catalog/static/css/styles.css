@@ -3,7 +3,8 @@ body, html {
 }
 
 body{
-    min-height:100%
+    min-height: 100%;
+    font-family: Lucida Grande,Lucida Sans Unicode,Lucida Sans,Geneva,Verdana,sans-serif;
 }
 
 .topnav {

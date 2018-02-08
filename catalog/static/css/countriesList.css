@@ -77,3 +77,31 @@
 .a-descripcio-pais:active .pais-container{
     box-shadow: 1px 1px 0 #9c9c9c;
 }
+
+@media screen and (max-width: 600px) {
+    .paisos-hero-text h1 {
+        font-size: 55px
+    }
+    .paisos-hero-text{
+        width: 420px;
+    }
+}
+
+@media screen and (max-width: 430px) {
+    .paisos-hero-text h1 {
+        font-size: 45px
+    }
+    .paisos-hero-text{
+        width: 360px;
+    }
+}
+
+
+@media screen and (max-width: 380px) {
+    .paisos-hero-text h1 {
+        font-size: 40px
+    }
+    .paisos-hero-text{
+        width: 320px;
+    }
+}
