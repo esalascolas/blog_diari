@@ -1,6 +1,6 @@
 .redactors-hero-image{
     width: 100%;
-    background: url(/static/images/redactor.jpg) bottom no-repeat;
+    background: url(../images/redactor.jpg) bottom no-repeat;
     background-size: cover;
     height: 50%;
     background-attachment: fixed;

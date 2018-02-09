@@ -22,7 +22,7 @@ h1{
 
 .index-container::after{
     content: "";
-    background: url(/static/svg/full_index_image.svg) center no-repeat;
+    background: url(../svg/full_index_image.svg) center no-repeat;
     background-size: cover;
     top: 0;
     left: 0;

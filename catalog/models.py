@@ -1,10 +1,8 @@
 from django.db import models
 from django.urls import reverse
-import uuid
 
 
 class Trip(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text='Unique ID')
     title = models.CharField(max_length=200)
     country = models.ManyToManyField('Country', help_text='Select a destiny')
     redactor = models.ManyToManyField('Redactor', help_text='Select redactor')
@@ -48,7 +46,6 @@ class Trip(models.Model):
 
 
 class DayInstance(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text='Unique ID')
     title = models.CharField(max_length=50, help_text='Day title')
     travel = models.ForeignKey('Trip', on_delete=models.SET_NULL, null=True)
     departure_date = models.DateField('departure', null=True, blank=True)
@@ -69,7 +66,7 @@ class DayInstance(models.Model):
 
 
 class Redactor(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text='Unique ID')
+    id = models.CharField(max_length=30, primary_key=True)
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=100)
     alias = models.CharField(max_length=50)
@@ -87,6 +84,7 @@ class Redactor(models.Model):
 
 
 class Country(models.Model):
+    id = models.CharField(max_length=30,primary_key=True)
     country_name = models.CharField(max_length=100)
     country_code = models.CharField(max_length=3)
     url_imatge_bandera = models.CharField(max_length=500, default="")

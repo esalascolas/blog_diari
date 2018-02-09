@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
-import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -25,9 +24,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', '"O,<S4ug[axs+[|kHCZ}q0B?dx]eM)ZTJP\LSsw;"AE^y,JRG=}^jj#ev')
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = bool(os.environ.get('DJANGO_DEBUG', True))
+DEBUG = True
 
-ALLOWED_HOSTS = ['nameless-hamlet-96048.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = [
+    'endinsat-aventura.appspot.com',
+    'localhost',
+    '.endinsat.com'
+]
 
 
 # Application definition
@@ -39,7 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'catalog.apps.CatalogConfig',
+    'catalog',
 ]
 
 MIDDLEWARE = [
@@ -80,10 +83,22 @@ WSGI_APPLICATION = 'locallibrary.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'aventures',
+        'USER': 'Ernest',
+        'PASSWORD': 'alcochaple',
+        'PORT': '5432'
     }
 }
+
+# In the flexible environment, you connect to CloudSQL using a unix socket.
+# Locally, you can use the CloudSQL proxy to proxy a localhost connection
+# to the instance
+DATABASES['default']['HOST'] = '/cloudsql/endinsat-aventura:us-central1:endinsat-sql'
+if os.getenv('GAE_INSTANCE'):
+    pass
+else:
+    DATABASES['default']['HOST'] = '127.0.0.1'
 
 
 # Password validation
@@ -118,18 +133,17 @@ USE_L10N = True
 
 USE_TZ = True
 
-# Heroku: Update database configuration from $DATABASE_URL.
-db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(db_from_env)
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 # The absolute path to the directory where collectstatic will collect static files for deployment.
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # The URL to use when referring to static files (where they will be served from)
-STATIC_URL = '/static/'
+if os.getenv('GAE_INSTANCE'):
+    STATIC_URL = 'https://storage.googleapis.com/aventurat-gcs/static/'
+else:
+    STATIC_URL = '/static/'
 
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/

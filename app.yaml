@@ -1,0 +1,9 @@
+runtime: python
+env: flex
+entrypoint: gunicorn -b :$PORT locallibrary.wsgi
+
+beta_settings:
+    cloud_sql_instances: endinsat-aventura:us-central1:endinsat-sql
+
+runtime_config:
+  python_version: 3

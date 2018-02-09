@@ -1,6 +1,6 @@
 .paisos-hero-image{
     width: 100%;
-    background: url(/static/images/mapa.jpg) bottom no-repeat;
+    background: url(../images/mapa.jpg) bottom no-repeat;
     background-size: cover;
     height: 50%;
     background-attachment: fixed;
