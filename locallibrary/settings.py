@@ -24,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', '"O,<S4ug[axs+[|kHCZ}q0B?dx]eM)ZTJP\LSsw;"AE^y,JRG=}^jj#ev')
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     'endinsat-aventura.appspot.com',
@@ -95,10 +95,6 @@ DATABASES = {
 # Locally, you can use the CloudSQL proxy to proxy a localhost connection
 # to the instance
 DATABASES['default']['HOST'] = '/cloudsql/endinsat-aventura:us-central1:endinsat-sql'
-if os.getenv('GAE_INSTANCE'):
-    pass
-else:
-    DATABASES['default']['HOST'] = '127.0.0.1'
 
 
 # Password validation
@@ -118,7 +114,6 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
@@ -140,11 +135,13 @@ USE_TZ = True
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # The URL to use when referring to static files (where they will be served from)
-if os.getenv('GAE_INSTANCE'):
-    STATIC_URL = 'https://storage.googleapis.com/aventurat-gcs/static/'
-else:
-    STATIC_URL = '/static/'
+STATIC_URL = 'https://storage.googleapis.com/aventurat-gcs/static/'
 
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+try:
+    from .local_settings import *
+except ImportError:
+    print('Unable to load local_settings.py:')

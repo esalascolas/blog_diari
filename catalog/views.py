@@ -7,6 +7,7 @@ def index(request):
     """
     View function for home page of site.
     """
+
     # Generate counts of some of the main objects
     num_trips = Trip.objects.count()
     num_days = DayInstance.objects.count()
@@ -20,7 +21,7 @@ def index(request):
             'num_trips': num_trips,
             'num_redactors': num_redactors,
             'num_countries': num_countries,
-            'num_days': num_days
+            'num_days': num_days,
         },
     )
 
@@ -28,6 +29,7 @@ def index(request):
 # TRIP
 class TripListView(generic.ListView):
     model = Trip
+    ordering = 'title'
     paginate_by = 10
 
 
@@ -39,6 +41,7 @@ class TripDetailView(generic.DetailView):
 # Redactors
 class RedactorListView(generic.ListView):
     model = Redactor
+    ordering = 'alias'
     paginate_by = 10
 
 
@@ -49,6 +52,7 @@ class RedactorDetailView(generic.DetailView):
 # Redactors
 class CountryListView(generic.ListView):
     model = Country
+    ordering = 'country_name'
     paginate_by = 10
 
 

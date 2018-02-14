@@ -7,10 +7,9 @@ from .models import Trip, Country, DayInstance, Redactor
 class TripAdmin(admin.ModelAdmin):
     list_display = ('title', 'display_redactor', 'display_country', 'duration_calc')
 
-
 @admin.register(Redactor)
 class RedactorAdmin(admin.ModelAdmin):
-    list_display = ('last_name', 'first_name', 'date_of_birth')
+    pass
 
 
 @admin.register(DayInstance)

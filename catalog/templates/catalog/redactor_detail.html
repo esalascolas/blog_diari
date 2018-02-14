@@ -9,7 +9,7 @@
 
 {% block content %}
 
-<div class="trip-detail-hero-image" style="background: url(/static/images/{{ redactor.alias |lower }}/hero.jpg) bottom no-repeat">
+<div class="trip-detail-hero-image" style="background: url({% static .. %}images/{{ redactor.alias |lower }}/hero.jpg) bottom no-repeat">
     <div class="trip-detail-hero-text">
           <h1>{{ redactor.alias }}</h1>
     </div>
@@ -17,7 +17,7 @@
 
 <div class="contenidor-dies">
     <hr>
-    <p><span class="titol-dia">{{redactor.alias}}</span> </p>
+    <p><span class="titol-dia">{{redactor.first_name}}</span> </p>
     <p class="text-muted">{{redactor.description | safe}}</p>
   </div>
 {% endblock %}

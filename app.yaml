@@ -7,3 +7,8 @@ beta_settings:
 
 runtime_config:
   python_version: 3
+
+skip_files:
+- ^(.*/)?.*~$
+- /log
+- ^(.*/)?local_settings.py

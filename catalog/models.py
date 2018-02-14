@@ -1,13 +1,15 @@
 from django.db import models
 from django.urls import reverse
+import uuid
 
 
 class Trip(models.Model):
+    # id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text='Unique ID')
     title = models.CharField(max_length=200)
     country = models.ManyToManyField('Country', help_text='Select a destiny')
     redactor = models.ManyToManyField('Redactor', help_text='Select redactor')
-    summary = models.TextField(max_length=1000, help_text="Brief description of the trip")
-    departure_date = models.DateField('departure',null=True, blank=True)
+    summary = models.TextField(max_length=1000)
+    departure_date = models.DateField('departure', null=True, blank=True)
     arrival_date = models.DateField('arrival', null=True, blank=True)
     duration = models.IntegerField(help_text='Duration of the journey in days', default=0)
     route_trip_image = models.CharField(max_length=200, default='', help_text='Name of the image file saved in static ex: /images/trip.jpg')
@@ -46,6 +48,7 @@ class Trip(models.Model):
 
 
 class DayInstance(models.Model):
+    # id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text='Unique ID')
     title = models.CharField(max_length=50, help_text='Day title')
     travel = models.ForeignKey('Trip', on_delete=models.SET_NULL, null=True)
     departure_date = models.DateField('departure', null=True, blank=True)
@@ -66,12 +69,12 @@ class DayInstance(models.Model):
 
 
 class Redactor(models.Model):
-    id = models.CharField(max_length=30, primary_key=True)
+    # id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text='Unique ID')
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=100)
     alias = models.CharField(max_length=50)
     date_of_birth = models.DateField('Birth: ', null=True, blank=True)
-    description = models.CharField(max_length=5000, help_text='Presentet: edat, qui ets? Que busques fer amb aquest blog? Què tagrada...', default='')
+    # description = models.CharField(max_length=5000)
 
     def __str__(self):
         return self.alias
@@ -84,7 +87,6 @@ class Redactor(models.Model):
 
 
 class Country(models.Model):
-    id = models.CharField(max_length=30,primary_key=True)
     country_name = models.CharField(max_length=100)
     country_code = models.CharField(max_length=3)
     url_imatge_bandera = models.CharField(max_length=500, default="")

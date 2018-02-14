@@ -20,7 +20,7 @@
       <div class="col-xs-12 col-sm-6 col-md-4 element-llistat-redactor">
           <div class="col-xs-12 contenidor-redactor">
               <div class="col-xs-12 contenidor-imatge-redactor" >
-                  <div class="imatge-redactor"  style="background-image: url(/static/images/{{ redactor.alias }}.jpg)" ></div>
+                  <div class="imatge-redactor"  style="background-image: url({% static .. %}images/{{ redactor.alias |lower }}.jpg)" ></div>
               </div>
               <div class="col-xs-12 titol-redactor">
                     <a href="{{ redactor.get_absolute_url }}">{{ redactor.alias }}</a>
