@@ -1,6 +1,7 @@
 from django.db import models
 from django.urls import reverse
 import uuid
+from django.contrib.staticfiles.templatetags.staticfiles import static
 
 
 class Trip(models.Model):
@@ -37,6 +38,12 @@ class Trip(models.Model):
 
     def get_absolute_url(self):
         return reverse('trip-detail', args=[str(self.id)])
+
+    def get_image_url(self):
+        return static(self.route_trip_image)
+
+    def get_hero_url(self):
+        return static(self.url_static + '/hero.jgp')
 
     def display_country(self):
         return ', '.join([country.country_name for country in self.country.all()[:3]])
@@ -81,6 +88,12 @@ class Redactor(models.Model):
 
     def get_absolute_url(self):
         return reverse('redactor-detail', args=[str(self.id)])
+
+    def get_image_url(self):
+        return static('images/' + self.alias.lower() + ".jpg")
+
+    def get_hero_url(self):
+        return static('images/' + self.alias.lower() + '/hero.jgp')
 
     class Meta:
         ordering = ["last_name", "first_name"]

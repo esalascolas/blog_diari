@@ -2,7 +2,7 @@
 
 {% block head %}
     {% load static %}
-    <link rel="stylesheet" href="{% static '/css/tripList.css' %}">
+    <link rel="stylesheet" href="{% static 'css/tripList.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -20,9 +20,9 @@
       {% for trip in trip_list %}
       <div class="col-xs-12 col-sm-6 col-md-4 element-llistat-viatges">
           <div class="col-xs-12 contenidor-viatge">
-              <div class="tag-redactor-viatge"><span class="glyphicon glyphicon-user" > </span> {{trip.display_redactor}}</div>
+              <div class="tag-redactor-viatge"><span class="glyphicon glyphicon-user" > </span> {{ trip.display_redactor }}</div>
               <div class="col-xs-12 contenidor-imatge-viatge" >
-                  <div class="imatge-viatge"  style="background-image: url({% static .. %}{{trip.route_trip_image}})" ></div>
+                  <div class="imatge-viatge"  style="background-image: url({{ trip.get_image_url }})" ></div>
               </div>
               <div class="col-xs-12 titol-viatge">
                     <a href="{{ trip.get_absolute_url }}">{{ trip.title }}</a>

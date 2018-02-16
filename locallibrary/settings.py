@@ -141,7 +141,8 @@ STATIC_URL = 'https://storage.googleapis.com/aventurat-gcs/static/'
 # https://warehouse.python.org/project/whitenoise/
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
+
 try:
     from .local_settings import *
 except ImportError:
-    print('Unable to load local_settings.py:')
+    pass

@@ -9,7 +9,7 @@
 
 {% block content %}
 
-<div class="trip-detail-hero-image" style="background: url({% static .. %}images/{{ redactor.alias |lower }}/hero.jpg) bottom no-repeat">
+<div class="trip-detail-hero-image" style="background: url({{ redactor.get_hero_url }}) bottom no-repeat">
     <div class="trip-detail-hero-text">
           <h1>{{ redactor.alias }}</h1>
     </div>
