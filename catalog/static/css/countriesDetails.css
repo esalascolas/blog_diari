@@ -1,33 +1,8 @@
-.trip-detail-hero-image{
-    width: 100%;
-    background-size: cover !important;
+#map{
     height: 50%;
-    background-attachment: fixed !important;
-    background-position: 50% 50% !important;
 }
 
-.trip-detail-hero-text{
-    text-align: center;
-    display: inline-block;
-    position: relative;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: #424242;
-    padding: 0 30px 5px 30px;
-    border-radius: 40px;
-    font-family: 'Permanent Marker', sans-serif;
-    background: rgba(255,255,255,0.7);
-}
-
-
-.trip-detail-hero-text h1{
-    font-size: 65px;
-    color: #8e4941;
-}
-
-
-.contenidor-dies{
+.contenidor-pais{
     max-width: 1200px;
     margin: 20px auto;
     font-family: 'Tempus Sans ITC', sans-serif;
@@ -36,8 +11,9 @@
     padding: 0 30px 0 57px;
 }
 
-.titol-dia{
+.titol-pais{
     font-family: "Permanent Marker", sans-serif;
+    color: #8e4941;
     font-size: 27px;
 }
 
@@ -45,21 +21,6 @@
     text-align: justify;
 }
 
-@media screen and (max-width: 600px) {
-    .trip-detail-hero-text h1 {
-        font-size: 60px
-    }
-}
-
-@media screen and (max-width: 430px) {
-    .trip-detail-hero-text h1 {
-        font-size: 48px
-    }
-}
-
-
-@media screen and (max-width: 380px) {
-    .trip-detail-hero-text h1 {
-        font-size: 41px
-    }
+.titol-caracteristica {
+    font-weight: 600;
 }

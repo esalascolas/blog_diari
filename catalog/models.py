@@ -43,7 +43,7 @@ class Trip(models.Model):
         return static(self.route_trip_image)
 
     def get_hero_url(self):
-        return static(self.url_static + '/hero.jgp')
+        return static('images' + self.url_static + '/hero.jpg')
 
     def display_country(self):
         return ', '.join([country.country_name for country in self.country.all()[:3]])
@@ -93,7 +93,7 @@ class Redactor(models.Model):
         return static('images/' + self.alias.lower() + ".jpg")
 
     def get_hero_url(self):
-        return static('images/' + self.alias.lower() + '/hero.jgp')
+        return static('images/' + self.alias.lower() + '/hero.jpg')
 
     class Meta:
         ordering = ["last_name", "first_name"]
@@ -103,6 +103,11 @@ class Country(models.Model):
     country_name = models.CharField(max_length=100)
     country_code = models.CharField(max_length=3)
     url_imatge_bandera = models.CharField(max_length=500, default="")
+    description = models.CharField(max_length=1500, default="")
+    currency = models.CharField(max_length=30, default="")
+    currency_sign = models.CharField(max_length=15, default="")
+    cant_miss = models.CharField(max_length=300, default="")
+    traditional_food = models.CharField(max_length=300, default="")
 
     def __str__(self):
         return '{0}, {1}'.format(self.country_name, self.country_code)

@@ -27,8 +27,8 @@ urlpatterns = [
 
 # Add URL maps to redirect the base URL to our application
 urlpatterns += [
-    path('', RedirectView.as_view(url='/catalog/', permanent=True)),
-    path('catalog/', include('catalog.urls'))
+    path('', RedirectView.as_view(url='/index/', permanent=True)),
+    path('index/', include('catalog.urls'))
 ]
 
 

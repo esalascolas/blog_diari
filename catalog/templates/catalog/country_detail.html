@@ -3,23 +3,45 @@
 {% block head %}
 
 {% load static %}
-<link rel="stylesheet" href="{% static 'css/tripDetails.css' %}">
+<link rel="stylesheet" href="{% static 'css/countriesDetails.css' %}">
 
 {% endblock%}
 
 {% block content %}
+    <div id="map"></div>
+    <script>
+      function initMap() {
+        // Create a map object and specify the DOM element for display.
+        var map = new google.maps.Map(document.getElementById('map'), {zoom: 6});
+        var geocoder = new google.maps.Geocoder;
+        geocoder.geocode({'address': '{{ country.country_name }}'}, function(results, status) {
+          if (status === 'OK') {
+            map.setCenter(results[0].geometry.location);
+          } else {
+            window.alert('Geocode was not successful for the following reason: ' +
+                status);
+          }
+        });
+      }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1fNMlw3X50Zx-WIY6t_2YfvutU0AC8Ag&callback=initMap"
+        async defer></script>
 
-<div class="trip-detail-hero-image" style="background: url(../images{{ trip.url_static|lower }}/hero.jpg) bottom no-repeat">
-    <div class="trip-detail-hero-text">
-          <h1>{{ trip.title }}</h1>
+<div class="contenidor-pais">
+    {% if country %}
+    <p><span class="titol-pais">{{ country.country_name }}</span></p>
+    <p class="text-muted">{{ country.description | safe }}</p>
+    <div class="contenidor-llistat">
+        <ul>
+            {% if country.currency %} <li><span class="titol-caracteristica">Moneda utilitzada: </span>{{ country.currency }} ({{ country.currency_sign | safe }})</li> {% endif %}
+            {% if country.cant_miss %} <li><span class="titol-caracteristica">No et perdis: </span>{{ country.cant_miss }}</li> {% endif %}
+            {% if country.traditional_food %} <li><span class="titol-caracteristica">Menjar típic: </span>{{ country.traditional_food }}</li> {% endif %}
+        </ul>
     </div>
-</div>
 
-<div class="contenidor-dies">
-    {% for day in trip.dayinstance_set.all %}
-    <hr>
-    <p><span class="titol-dia">{{day.title}}</span> | <strong>Durada:</strong> {{day.duration_calc}} {% if day.duration_calc > 1 %} dies {% else %} dia {% endif %}</p>
-    <p class="text-muted">{{day.description | safe}}</p>
-    {% endfor %}
+    {% else %}
+    <div>No es disposa d'informació del país.</div>
+    {% endif %}
+
   </div>
 {% endblock %}

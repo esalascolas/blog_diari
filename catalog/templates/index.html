@@ -12,17 +12,13 @@
         <div class="center-index-container">
             <h1>T'endinses a l'<span class="dynamic-style">aventura</span>?</h1>
         </div>
-
+        <div class="subtitol">Endinsa't en viatges, experiències i vides. Descobreix i atreveix-te a descobrir nous llocs, paisatges i formes d'entendre la vida. Aventura't.</div>
         <div class="center-navbar-container">
-            <button class="option" onclick="document.location.href='{% url 'trips' %}'"> <span class="glyphicon glyphicon-book"></span> Viatges</button>
-            <button class="option" onclick="document.location.href='{% url 'countries' %}'"> <span class="glyphicon glyphicon-globe"></span> Països</button>
-            <button class="option" onclick="document.location.href='{% url 'redactors' %}'"> <span class="glyphicon glyphicon-user"></span> Redactors</button>
+            <a class="option link-to-nutton" onclick="document.location.href='{% url 'trips' %}'"> <span class="glyphicon glyphicon-book"></span> Viatges</a>
+            <a class="option link-to-button" onclick="document.location.href='{% url 'countries' %}'"> <span class="glyphicon glyphicon-globe"></span> Països</a>
+            <a class="option link-to-button" onclick="document.location.href='{% url 'redactors' %}'"> <span class="glyphicon glyphicon-user"></span> Redactors</a>
         </div>
     </div>
-    <a herf="{% url 'trips' %}" hidden>Viatges</a>
-    <a herf="{% url 'countries' %}" hidden>Països</a>
-    <a herf="{% url 'redactors' %}" hidden >Redactors</a>
-
 </div>
 
 

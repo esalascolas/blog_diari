@@ -32,6 +32,16 @@ h1{
     z-index: -1;
 }
 
+.subtitol{
+    padding: 20px 10px 0 0px;
+    font-size: 28px;
+    max-width: 1261px;
+    text-align: center;
+    margin: 0 auto;
+    font-family: Lucida Grande,Lucida Sans Unicode,Lucida Sans,Geneva,Verdana,sans-serif;
+    line-height: 2.25;
+}
+
 
 .center-container{
     position: relative;
@@ -41,6 +51,8 @@ h1{
     transform: translate(-50%, -50%);
     text-align: center;
     width: 100%;
+    background: rgba(255,255,255,0.5);
+    box-shadow: 1px 1px 5px #333;
 }
 .center-index-container{
     width: 100%;
@@ -50,7 +62,7 @@ h1{
 }
 
 .center-navbar-container{
-    margin: 108px auto;
+    margin: 60px auto;
 }
 
 
@@ -62,10 +74,12 @@ h1{
     display: inline-block;
     font-family: "Open Sans", fantasy;
     font-size: 34px;
-    color: #e5e1d9;
+    color: #e5e1d9 !important;
     padding: 4px 0 4px 0;
     outline: none;
     border: none;
+    cursor: pointer;
+    text-decoration: none !important;
 
     background-image: linear-gradient(to left, #5d6d77 0%, #d2ad5a 51%, #d2ad5a 100%);;
     background-size: 400% auto;
@@ -81,6 +95,12 @@ h1{
 @media screen and (max-width: 600px) {
     h1 {
         font-size: 60px
+    }
+    .subtitol{
+        padding: 20px 15px 0 20px;
+        font-size: 16px;
+        line-height: 2;
+        text-align: justify;
     }
 }
 
