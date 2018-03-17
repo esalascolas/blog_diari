@@ -3,7 +3,7 @@
 <head>
     {% block title %}<title>Endinsa't a l'aventura</title>{% endblock %}
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <meta name="theme-color" content="#333" />
 
       <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -31,16 +31,20 @@
 
 </head>
 
-<body>
+<body  data-target="#myScrollspy" style="position: relative;" data-spy="scroll" data-offset="80">
 
     {% url 'index' as index_url %}
     {% if request.get_full_path != index_url %}
     <div class="topnav" id="myTopnav">
-          <a href="{% url 'index' %}">Inici</a>
+          <a href="{% url 'index' %}" class="inici">Endinsa't</a>
           <a href="{% url 'trips' %}">Viatges</a>
           <a href="{% url 'redactors' %}">Redactors</a>
           <a href="{% url 'countries' %}">Països</a>
-          <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
+          <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="gestionaNavBar()">&#9776;</a>
+
+          {% block DiesNavbar %}
+          {% endblock %}
+
     </div>
     {% endif %}
 
@@ -69,8 +73,19 @@
 
     <script language="JavaScript">
         // Controls the navbar display mobile/pc
-        function myFunction() {
-            var x = document.getElementById("myTopnav")
+        function gestionaNavBar() {
+            var elements = document.getElementById("myTopnav").getElementsByTagName("a");
+            for (var i = 0; i < elements.length; i++){
+                if (elements[i].className === "inici" || elements[i].className === "icon"){continue}
+                elements[i].classList.remove("hidden")
+                if (elements[i].className !== ""){
+                    elements[i].classList.add("hidden")
+                }
+                else {
+                    elements[i].classList.remove("hidden")
+                }
+            }
+            var x = document.getElementById("myTopnav");
             if (x.className === "topnav") {
                 x.className += " responsive";
             } else {
@@ -78,5 +93,7 @@
             }
         }
     </script>
+    {% block javascript %}
+    {% endblock %}
 </body>
 </html>

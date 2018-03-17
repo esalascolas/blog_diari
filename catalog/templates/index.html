@@ -6,20 +6,14 @@
 {% endblock %}
 
 {% block content %}
-
+<div class="bg"></div>
 <div class="index-container">
-    <div class="center-container">
-        <div class="center-index-container">
-            <h1>T'endinses a l'<span class="dynamic-style">aventura</span>?</h1>
-        </div>
-        <div class="subtitol">Endinsa't en viatges, experiències i vides. Descobreix i atreveix-te a descobrir nous llocs, paisatges i formes d'entendre la vida. Aventura't.</div>
-        <div class="center-navbar-container">
-            <a class="option link-to-nutton" onclick="document.location.href='{% url 'trips' %}'"> <span class="glyphicon glyphicon-book"></span> Viatges</a>
-            <a class="option link-to-button" onclick="document.location.href='{% url 'countries' %}'"> <span class="glyphicon glyphicon-globe"></span> Països</a>
-            <a class="option link-to-button" onclick="document.location.href='{% url 'redactors' %}'"> <span class="glyphicon glyphicon-user"></span> Redactors</a>
-        </div>
-    </div>
+            <a class="link-index" href="{% url 'trips' %}">Viatges</a>
+            <a class="link-index" href="{% url 'countries' %}">Països</a>
+            <a class="link-index" href="{% url 'redactors' %}">Redactors</a>
 </div>
+
+
 
 
 {% endblock %}

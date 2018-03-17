@@ -1,6 +1,14 @@
-from django.conf.urls import url
 from django.urls import path
 from . import views
+from .sitemaps import *
+from django.contrib.sitemaps.views import sitemap
+
+sitemaps = {
+    'trip': TripSitemap(),
+    'redactor': RedactorSitemap(),
+    'country': CountrySitemap(),
+    'static': StaticSitemap(),
+}
 
 
 urlpatterns = [
@@ -11,4 +19,9 @@ urlpatterns = [
     path('writers/<str:pk>', views.RedactorDetailView.as_view(), name='redactor-detail'),
     path('countries/', views.CountryListView.as_view(), name='countries'),
     path('countries/<str:pk>', views.CountryDetailView.as_view(), name='country-detail'),
+]
+
+
+urlpatterns += [
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
 ]

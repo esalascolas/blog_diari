@@ -7,6 +7,15 @@
 
 {% endblock%}
 
+{% block DiesNavbar %}
+    {% for day in trip.dayinstance_set.all %}
+        <a class="scroll-smooth link-dies" href="#section{{forloop.counter}}" onclick="gestionaNavBarDies()">{{day.title}}</a>
+    {% endfor %}
+    <a href="javascript:void(0);" style="font-size:15px; right: 45px;" class="icon"  onclick="gestionaNavBarDies()">Dies &#x25BC;</a>
+{%  endblock %}
+
+
+
 {% block content %}
 
 <div class="trip-detail-hero-image" style="background: url({{ trip.get_hero_url }}) bottom no-repeat">
@@ -15,16 +24,97 @@
     </div>
 </div>
 
-<div class="contenidor-dies">
-    <div class="resum-viatge">
-        {{ trip.summary | safe }}
-    </div>
-    <br>
-    {% for day in trip.dayinstance_set.all %}
 
-    <p><span class="titol-dia">{{day.title}}</span> | <strong>Dia:</strong> {{ forloop.counter }} </p>
-    <div class="paragrafs-dia">{{day.description | safe}}</div>
-    <hr>
-    {% endfor %}
-  </div>
+<div class="contenidor-grup">
+    <div class="row" style="max-width: 100%;">
+        <nav class="col-sm-3 hidden-xs" id="myScrollspy">
+          <ul class="nav nav-pills nav-stacked" data-spy="affix" data-offset-top="256" style="margin-left: 20px;">
+            {% for day in trip.dayinstance_set.all %}
+                <li {% if forloop.counter == 1 %} class="active"{% endif %}>
+                    <a class="scroll-smooth" href="#section{{forloop.counter}}">{{day.title}}</a>
+                </li>
+             {% endfor %}
+          </ul>
+        </nav>
+        <div class="contenidor-dies col-sm-9 col-xs-12">
+            <div class="resum-viatge">
+                {{ trip.summary | safe }}
+            </div>
+            <br>
+            {% for day in trip.dayinstance_set.all %}
+
+            <p ><span id="section{{forloop.counter}}" class="titol-dia">{{day.title}}</span> | <strong>Dia:</strong> {{ forloop.counter }} </p>
+            <div class="paragrafs-dia">{{day.description | safe}}</div>
+            <hr>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+    {% block javascript %}
+    <script>
+$(document).ready(function(){
+
+  // Add smooth scrolling on all links inside the navbar
+    $(".scroll-smooth").on('click', function(event) {
+        if (this.hash !== "") {
+          event.preventDefault();
+          var hash = this.hash;
+
+          $('html, body').animate({
+            scrollTop: ($(hash).offset().top-70)
+          }, 800, function(){
+
+          });
+        }  // End if
+      });
+    });
+
+    function gestionaNavBarDies(){
+        var elements = document.getElementById("myTopnav").getElementsByTagName("a");
+        for (var i = 0; i < elements.length; i++){
+            if (elements[i].className.includes("inici")|| elements[i].className.includes("icon")){continue}
+            if (elements[i].className.includes("link-dies")){
+                elements[i].classList.remove("hidden")
+            }
+            else {
+                elements[i].classList.add("hidden")
+            }
+        }
+        var x = document.getElementById("myTopnav");
+        if (x.className === "topnav") {
+            x.className += " responsive";
+        } else {
+            x.className = "topnav";
+        }
+    }
+
+     function windowSize() {
+          windowWidth = window.innerWidth ? window.innerWidth : $(window).width();
+          var elements = document.getElementsByClassName("link-dies");
+
+          if (windowWidth > 845) {
+              console.log(windowWidth)
+             for(var i = 0; i<elements.length; i++) {
+                 elements[i].style.display = "none"
+             }
+          }
+          else{
+              for(var k = 0; k<elements.length; k++) {
+                 elements[k].style.display="";
+             }
+          }
+     }
+
+    //Init Function of init it wherever you like...
+    windowSize();
+
+    // For example, get window size on window resize
+    $(window).resize(function() {
+      windowSize();
+    });
+</script>
+
+    {% endblock %}
+
 {% endblock %}

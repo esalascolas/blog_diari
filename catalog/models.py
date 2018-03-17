@@ -100,8 +100,8 @@ class Redactor(models.Model):
 
 
 class Country(models.Model):
-    country_name = models.CharField(max_length=100)
-    country_code = models.CharField(max_length=3)
+    country_name = models.CharField(max_length=100, default="")
+    country_code = models.CharField(max_length=3, default="")
     url_imatge_bandera = models.CharField(max_length=500, default="")
     description = models.CharField(max_length=1500, default="")
     currency = models.CharField(max_length=30, default="")
