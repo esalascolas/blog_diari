@@ -28,13 +28,24 @@
 <div class="contenidor-grup">
     <div class="row" style="max-width: 100%;">
         <nav class="col-sm-3 hidden-xs" id="myScrollspy">
-          <ul class="nav nav-pills nav-stacked" data-spy="affix" data-offset-top="256" style="margin-left: 20px;">
+          <ul class="nav nav-pills nav-stacked" data-spy="affix" data-offset-top="256" style="margin-left: 20px;max-height: 348px;overflow: hidden;">
+            <li class="more-li" onmousedown="mousedownLess()">
+                <a class="scroll-smooth" href="javascript:void(0)">
+                    <span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
+                </a>
+            </li>
             {% for day in trip.dayinstance_set.all %}
-                <li {% if forloop.counter == 1 %} class="active"{% endif %}>
+                <li  class="scrollable-li{% if forloop.counter == 1 %} active{% endif %}">
                     <a class="scroll-smooth" href="#section{{forloop.counter}}">{{day.title}}</a>
                 </li>
              {% endfor %}
+              <li class="less-li" onmousedown="mousedownMore()">
+                  <a class="scroll-smooth" href="javascript:void(0)">
+                      <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+                  </a>
+              </li>
           </ul>
+
         </nav>
         <div class="contenidor-dies col-sm-9 col-xs-12">
             <div class="resum-viatge">
@@ -53,7 +64,7 @@
 
     {% block javascript %}
     <script>
-$(document).ready(function(){
+$(document).ready(function() {
 
   // Add smooth scrolling on all links inside the navbar
     $(".scroll-smooth").on('click', function(event) {
@@ -69,6 +80,60 @@ $(document).ready(function(){
         }  // End if
       });
     });
+
+    var mousedownID = -1;  //Global ID of mouse down interval
+    if ($(".nav.nav-pills").height()<$(".less-li").offset().top){
+        $(".less-li")[0].classList.add("sota")
+    }
+    comprovaScrollSuperior();
+    comprovaScrollInferior();
+
+    function scrollNavBar(direction){
+        if(direction === -1 && comprovaScrollSuperior() === 0){return;}
+        const velocitat = 8;
+        var liElements = document.getElementsByClassName("scrollable-li");
+        var position = 0;
+        for (var i = 0, len = liElements.length; i < len; i++){
+            if (i===0){if (comprovaScrollInferior() === 0 && direction === 1){return;}}
+            position = parseFloat(liElements[i].style.top||0) + (direction*velocitat);
+            liElements[i].style.top = (position + 'px');
+        }
+        comprovaScrollSuperior();
+    }
+
+    function comprovaScrollSuperior(){
+        var ScrollableLi = $(".scrollable-li");
+        var lessLiEl = document.getElementsByClassName("less-li")[0];
+        var LessLi = $(".less-li");
+
+        if(ScrollableLi.last().offset().top <= LessLi.offset().top -ScrollableLi.last().height()){
+            lessLiEl.classList.add("desabilitat");
+            return 0
+        }
+        else{
+             lessLiEl.classList.remove("desabilitat");
+             return 1
+        }
+    }
+
+    function comprovaScrollInferior(){
+        var liElements = document.getElementsByClassName("scrollable-li");
+        var moreLi = document.getElementsByClassName("more-li")[0];
+        var desabilitat = 1;
+        if (liElements.length > 0){
+            if( parseFloat(liElements[0].style.top||0) < 0){
+                desabilitat = 0;
+            }
+        }
+        if (desabilitat === 1){
+            moreLi.classList.add("desabilitat");
+            return 0
+        }
+        else{
+            moreLi.classList.remove("desabilitat");
+            return 1
+        }
+    }
 
     function gestionaNavBarDies(){
         var elements = document.getElementById("myTopnav").getElementsByTagName("a");
@@ -90,11 +155,10 @@ $(document).ready(function(){
     }
 
      function windowSize() {
-          windowWidth = window.innerWidth ? window.innerWidth : $(window).width();
+          var windowWidth = window.innerWidth ? window.innerWidth : $(window).width();
           var elements = document.getElementsByClassName("link-dies");
 
           if (windowWidth > 845) {
-              console.log(windowWidth)
              for(var i = 0; i<elements.length; i++) {
                  elements[i].style.display = "none"
              }
@@ -105,6 +169,33 @@ $(document).ready(function(){
              }
           }
      }
+
+
+    function mousedownMore() {
+        if (mousedownID == -1)  //Prevent multimple loops!
+            mousedownID = setInterval(whilemousedownMore, 50 /*execute every 100ms*/);
+    }
+    function mousedownLess() {
+        if (mousedownID == -1)  //Prevent multimple loops!
+            mousedownID = setInterval(whilemousedownLess, 50 /*execute every 100ms*/);
+    }
+    function mouseup(event) {
+        if(mousedownID!=-1) {  //Only stop if exists
+            clearInterval(mousedownID);
+            mousedownID=-1;
+        }
+    }
+    function whilemousedownMore() {
+        scrollNavBar(-1)
+    }
+
+    function whilemousedownLess() {
+        scrollNavBar(1)
+    }
+
+    document.addEventListener("mouseup", mouseup);
+    //Also clear the interval when user leaves the window with mouse
+    document.addEventListener("mouseout", mouseup);
 
     //Init Function of init it wherever you like...
     windowSize();

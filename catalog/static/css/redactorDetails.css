@@ -2,7 +2,8 @@
     width: 100%;
     background-size: cover !important;
     height: 50%;
-    background-attachment: fixed !important;
+
+    /*background-attachment: fixed !important;*/
     background-position: 50% 50% !important;
 }
 
@@ -13,6 +14,10 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
     color: #424242;
     padding: 0 30px 5px 30px;
     border-radius: 40px;
@@ -28,7 +33,7 @@
 
 
 .contenidor-dies{
-    max-width: 1200px;
+    max-width: 1016px;
     margin: 20px auto;
     font-family: 'Tempus Sans ITC', sans-serif;
     font-size: 17px;
@@ -39,10 +44,14 @@
 .titol-dia{
     font-family: "Permanent Marker", sans-serif;
     font-size: 27px;
+    color: #8e4941;
 }
 
 .text-muted p{
     text-align: justify;
+    font-family: Lucida Grande,Lucida Sans Unicode,Lucida Sans,Geneva,Verdana,sans-serif;
+    line-height: 2.25;
+    margin-bottom: 20px;
 }
 
 @media screen and (max-width: 600px) {

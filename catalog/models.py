@@ -81,7 +81,7 @@ class Redactor(models.Model):
     last_name = models.CharField(max_length=100)
     alias = models.CharField(max_length=50)
     date_of_birth = models.DateField('Birth: ', null=True, blank=True)
-    # description = models.CharField(max_length=5000)
+    description = models.TextField(max_length=5000, default="")
 
     def __str__(self):
         return self.alias

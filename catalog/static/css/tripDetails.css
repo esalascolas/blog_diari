@@ -13,6 +13,10 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
     color: #424242;
     padding: 0 30px 5px 30px;
     border-radius: 40px;
@@ -40,8 +44,8 @@
     color: white;
 }
 .active{
-     background-color: unset;
-     color: unset;
+    background-color: inherit;
+    color: inherit;
 }
 
 #myScrollspy a {
@@ -92,6 +96,40 @@
 }
 
 
+li.scrollable-li {
+    -webkit-transition: top 0.15s ease;
+    -moz-transition: top 0.15s ease;
+    -ms-transition: top 0.15s ease;
+    -o-transition: top 0.15s ease;
+    transition: all 0.15s ease;
+}
+
+.more-li, .less-li{
+    z-index: 2;
+    text-align: center;
+    -webkit-transition: background-color 0.25s ease;
+    -moz-transition: background-color 0.25s ease;
+    -ms-transition: background-color 0.25s ease;
+    -o-transition: background-color 0.25s ease;
+    transition: background-color 0.25s ease;
+}
+
+.less-li.sota{
+    position: absolute;
+    bottom: 0;
+}
+
+.more-li a, .less-li a{
+    background: #8e4941 !important;
+    color: white !important;
+}
+
+.more-li.desabilitat a, .less-li.desabilitat a{
+    background: #d8d8d8 !important;
+    cursor: default;
+    color: #b3aeae !important;
+}
+
 #top-navigation-panel{
     top: 52px;
     background-color: #333333;
@@ -103,6 +141,11 @@
 #top-navigation-panel li{
     background-color: #333;
     color:#f2f2f2;
+}
+
+#myTopnav{
+    max-height: 100vh;
+    overflow: auto;
 }
 
 @media screen and (max-width: 600px) {

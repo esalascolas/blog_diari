@@ -19,7 +19,7 @@
       {% for country in country_list %}
       <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 container-fluid element-llistat-paisos">
           <a href="{{ country.get_absolute_url }}"  class="a-descripcio-pais">
-              <div class="pais-container" style="background: url({{country.url_imatge_bandera}}) no-repeat;background-size: 100% 50%;">
+              <div class="pais-container" style="background: url({{country.url_imatge_bandera}}) no-repeat;background-size: 100% 50%;background-color: white;">
                   <div class="titol-pais">
                     <span class="pais">{{ country.country_name }}</span>
                   </div>
@@ -34,4 +34,12 @@
     {% else %}
       <p>No hi han viatges a la llibreria.</p>
     {% endif %}       
+{% endblock %}
+
+
+{% block javascript %}
+    <script>
+    $(".pais-container").css("height",0.28*$( window ).height() + "px");
+    $(".pais-container").css("width",0.28*$( window ).height() + "px");
+    </script>
 {% endblock %}

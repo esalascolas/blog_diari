@@ -22,7 +22,7 @@
           <div class="col-xs-12 contenidor-viatge">
               <div class="tag-redactor-viatge"><span class="glyphicon glyphicon-user" > </span> {{ trip.display_redactor }}</div>
               <div class="col-xs-12 contenidor-imatge-viatge" >
-                  <div class="imatge-viatge"  style="background-image: url({{ trip.get_image_url }})" ></div>
+                  <div class="imatge-viatge"  style="background-image: url({{ trip.get_image_url }})" onclick="window.location='{{ trip.get_absolute_url }}'" ></div>
               </div>
               <div class="col-xs-12 titol-viatge">
                     <a href="{{ trip.get_absolute_url }}">{{ trip.title }}</a>

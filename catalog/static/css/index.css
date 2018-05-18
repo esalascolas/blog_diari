@@ -21,14 +21,24 @@ body{
     text-align: center;
     font-family: "Permanent Marker", sans-serif;
     display: flex;
+    display: -webkit-inline-box;
     position: absolute;
     color: #8e4941;
     padding-top: 15px;
     font-size: 31px;
-    background-image: linear-gradient(to right,#8e4941,#a57b4e, #4f4f4e, #8e4941);
+    background: -moz-linear-gradient(top, #8e4941 0%,#a57b4e 33%,#4f4f4e 66%,#8e4941 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, top left, top right, color-stop(0%,#8e4941), color-stop(33%,#a57b4e), color-stop(66%,#4f4f4e), color-stop(100%,#8e4941)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(left,  #8e4941 0%,#a57b4e 33%,#4f4f4e 66%,#8e4941 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(right,  #8e4941 0%,#a57b4e 33%,#4f4f4e 66%,#8e4941 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(right,  #8e4941 0%,#a57b4e 33%,#4f4f4e 66%,#8e4941 100%); /* IE10+ */
+    background: linear-gradient(to right, #8e4941 0%,#a57b4e 33%,#4f4f4e 66%,#8e4941 100%); /* W3C */
     background-size: 300% auto;
     background-position: 100% 0;
-    transition: background-position 0.75s;
+    -webkit-transition: background-position 0.75s ease;
+    -moz-transition: background-position 0.75s ease;
+    -ms-transition: background-position 0.75s ease;
+    -o-transition: background-position 0.75s ease;
+    transition: background-position 0.75s ease;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 
