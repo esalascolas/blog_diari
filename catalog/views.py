@@ -25,12 +25,11 @@ def index(request):
         },
     )
 
-
 # TRIP
 class TripListView(generic.ListView):
     model = Trip
     ordering = 'title'
-    paginate_by = 10
+    # paginate_by = 10
 
 
 # DAYS
@@ -42,7 +41,7 @@ class TripDetailView(generic.DetailView):
 class RedactorListView(generic.ListView):
     model = Redactor
     ordering = 'alias'
-    paginate_by = 10
+    # paginate_by = 10
 
 
 class RedactorDetailView(generic.DetailView):
@@ -53,8 +52,11 @@ class RedactorDetailView(generic.DetailView):
 class CountryListView(generic.ListView):
     model = Country
     ordering = 'country_name'
-    paginate_by = 10
+    # paginate_by = 10
 
 
 class CountryDetailView(generic.DetailView):
     model = Country
+
+
+

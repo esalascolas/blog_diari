@@ -1,6 +1,7 @@
 {% extends "base_generic.html" %}
 
 {% block head %}
+<script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-beta.2/lazyload.js"></script>
 
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/tripDetails.css' %}">
@@ -47,14 +48,15 @@
           </ul>
 
         </nav>
+        <div   style="width: 220px;"></div>
         <div class="contenidor-dies col-sm-9 col-xs-12">
             <div class="resum-viatge">
                 {{ trip.summary | safe }}
             </div>
             <br>
-            {% for day in trip.dayinstance_set.all %}
-
-            <p ><span id="section{{forloop.counter}}" class="titol-dia">{{day.title}}</span> | <strong>Dia:</strong> {{ forloop.counter }} </p>
+            {% for day in trip.dayinstance_set.all|dictsort:"id" %}
+            <p><span id="section{{forloop.counter}}" class="titol-dia">{{day.title}}</span> | <strong>Dia:</strong> {{ forloop.counter }} </p>
+            {% if day.day_image %}<img class="imatge-celo" src="{% static 'images/celo.png' %}"/><img class="imatge-dia lazyload" data-src="{{ day.image_url|default_if_none:'#' }}"/>{% endif %}
             <div class="paragrafs-dia">{{day.description | safe}}</div>
             <hr>
             {% endfor %}
@@ -80,6 +82,8 @@ $(document).ready(function() {
         }  // End if
       });
     });
+
+    lazyload();
 
     var mousedownID = -1;  //Global ID of mouse down interval
     if ($(".nav.nav-pills").height()<$(".less-li").offset().top){

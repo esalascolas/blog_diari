@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'django.contrib.sitemaps',
+    'storages',
     'catalog',
 ]
 
@@ -72,6 +73,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',
             ],
         },
     },
@@ -116,6 +118,12 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+
+DEFAULT_FILE_STORAGE = 'storages.backends.gs.GSBotoStorage'
+GS_ACCESS_KEY_ID = 'GOOGMUUZCHLFEGFFKKT7LUCZ'
+GS_SECRET_ACCESS_KEY = 'stMQO+xravAVmI0KAJ3FP+l2ANSGGwxoxhr3TpLR'
+GS_BUCKET_NAME = 'aventurat-gcs'
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/

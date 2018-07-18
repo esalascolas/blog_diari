@@ -1,6 +1,5 @@
 from django.db import models
 from django.urls import reverse
-import uuid
 from django.contrib.staticfiles.templatetags.staticfiles import static
 
 
@@ -62,6 +61,7 @@ class DayInstance(models.Model):
     arrival_date = models.DateField('arrival', null=True, blank=True)
     duration = models.IntegerField(help_text='Duration of the journey in days')
     description = models.TextField(max_length="5000")
+    day_image = models.ImageField(upload_to='day', blank=True)
 
     def __str__(self):
         return self.title
@@ -74,6 +74,10 @@ class DayInstance(models.Model):
             total = self.duration
         return total
 
+    @property
+    def image_url(self):
+        if self.day_image and hasattr(self.day_image, 'url'):
+            return self.day_image.url
 
 class Redactor(models.Model):
     # id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text='Unique ID')
@@ -108,9 +112,12 @@ class Country(models.Model):
     currency_sign = models.CharField(max_length=15, default="")
     cant_miss = models.CharField(max_length=300, default="")
     traditional_food = models.CharField(max_length=300, default="")
+    flag_image = models.ImageField(upload_to='country', default="")
 
     def __str__(self):
         return '{0}, {1}'.format(self.country_name, self.country_code)
 
     def get_absolute_url(self):
         return reverse('country-detail', args=[str(self.id)])
+
+

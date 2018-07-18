@@ -54,6 +54,45 @@
     width: 220px;
 }
 
+img.imatge-dia {
+     max-width: 685px;
+    height: 50vh;
+    margin: 0 auto;
+    width: 100%;
+    object-fit: cover;
+    /* -webkit-animation: filter-animation 12s infinite; */
+    display: flex;
+    position: relative;
+    top: -33px;
+    padding: 45px 36px 70px 36px;
+    transform: rotate(-1deg);
+    background: white;
+    box-shadow: 1px 1px 5px #3b3b3b;
+}
+
+
+img.imatge-celo {
+    position: relative;
+    top: -6px;
+    display: flex;
+    z-index: 2;
+    margin: 0 auto;
+    transform: rotate(-8deg);
+}
+
+@-webkit-keyframes filter-animation {
+    0% {
+        -webkit-filter: brightness(100%);
+    }
+
+    50% {
+        -webkit-filter: brightness(150%);
+    }
+    100% {
+        -webkit-filter: brightness(100%);
+    }
+}
+
 
 .inici {
     width: 115px;
@@ -61,7 +100,7 @@
 
 
 .contenidor-dies{
-    max-width: 1200px;
+    max-width: 1500px;
     margin: 20px auto;
     font-size: 17px;
     line-height: 30px;
@@ -146,6 +185,7 @@ li.scrollable-li {
 #myTopnav{
     max-height: 100vh;
     overflow: auto;
+    z-index: 3;
 }
 
 @media screen and (max-width: 600px) {
