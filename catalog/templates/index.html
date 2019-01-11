@@ -6,14 +6,25 @@
 {% endblock %}
 
 {% block content %}
-<div class="bg"></div>
-<div class="index-container">
-            <a class="link-index" href="{% url 'trips' %}">Viatges</a>
-            <a class="link-index" href="{% url 'countries' %}">Països</a>
-            <a class="link-index" href="{% url 'redactors' %}">Redactors</a>
+<div class="index-container bot-right" id="contenidor-principal">
+    <h1 class="dashed-shadow">Endinsa't a l'aventura</h1>
+    <div class="contenidor-links">
+        <a class="link-index" href="{% url 'trips' %}"><img class="imatge-logo" src="{% static 'images/logos/viatges.png' %}"/>Viatges</a>
+        <a class="link-index" href="{% url 'countries' %}"><img class="imatge-logo" src="{% static 'images/logos/paisos.png' %}"/>Països</a>
+        <a class="link-index" href="{% url 'redactors' %}"><img class="imatge-logo" src="{% static 'images/logos/redactors.png' %}"/>Redactors</a>
+    </div>
+
 </div>
 
 
 
 
+{% endblock %}
+
+{% block javascript %}
+    <script>
+        setTimeout(function(){
+            document.getElementById("contenidor-principal").style.opacity = 1
+        }, 500);
+    </script>
 {% endblock %}
