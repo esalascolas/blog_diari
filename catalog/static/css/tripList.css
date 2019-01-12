@@ -1,47 +1,5 @@
-/*LLISTAT DE VIATGES*/
-
 .viatge-hero-image{
-    width: 100%;
     background: url(../images/viatge.jpg) bottom no-repeat;
-    background-size: cover;
-    height: 50%;
-    background-attachment: fixed;
-    background-position: 50% 50%;
-}
-
-.viatge-hero-text{
-    text-align: center;
-    display: inline-block;
-    position: relative;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    -webkit-transform: translate(-50%, -50%);
-    -moz-transform: translate(-50%, -50%);
-    -o-transform: translate(-50%, -50%);
-    background: rgba(255,255,255,0.7);
-    width: 676px;
-    color: #424242;
-    padding: 0 30px 5px 30px;
-    border-radius: 40px;
-    font-family: 'Permanent Marker', sans-serif;
-}
-
-.viatge-hero-text h1{
-    font-size: 65px;
-    color: #8e4941;
-}
-
-.element-llistat-viatges {
-    display: inline-block;
-    margin: 30px 0 10px 0;
-    padding: 5px 10px;
-}
-
-.titol-viatge {
-    font-size: 26px;
-    text-align: center;
 }
 
 .tag-redactor-viatge {
@@ -52,55 +10,4 @@
 .durada-viatge{
     text-align: center;
     color: #8e4941;
-}
-
-
-.imatge-viatge{
-    width: 200px;
-    height: 200px;
-    background-size: cover;
-    display: block;
-    border-radius: 50%;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    margin:auto;
-    cursor: pointer;
-    -webkit-transition: box-shadow 0.5s ease;
-    -moz-transition: box-shadow 0.5s ease;
-    -ms-transition: box-shadow 0.5s ease;
-    -o-transition: box-shadow 0.5s ease;
-    transition: box-shadow 0.5s ease;
-}
-
-.imatge-viatge:hover{
-    box-shadow: 0 0 10px #333;
-}
-
-
-@media screen and (max-width: 600px) {
-    .viatge-hero-text h1 {
-        font-size: 55px
-    }
-    .viatge-hero-text{
-        width: 420px;
-    }
-}
-
-@media screen and (max-width: 430px) {
-    .viatge-hero-text h1 {
-        font-size: 45px
-    }
-    .viatge-hero-text{
-        width: 360px;
-    }
-}
-
-
-@media screen and (max-width: 380px) {
-    .viatge-hero-text h1 {
-        font-size: 40px
-    }
-    .viatge-hero-text{
-        width: 320px;
-    }
 }

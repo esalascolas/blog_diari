@@ -9,22 +9,22 @@
 
 
 
-   <div class="viatge-hero-image">
-        <div class="viatge-hero-text">
+   <div class="viatge-hero-image hero-image">
+        <div id="contenidor-principal" class="hero-text">
             <h1>Atreveix-te</h1>
         </div>
     </div>
 
     {% if trip_list %}
-    <div class="col-xs-12 contenidor-llistat-vaitges">
+    <div class="col-xs-12 contenidor-llistat-boles">
       {% for trip in trip_list %}
-      <div class="col-xs-12 col-sm-6 col-md-4 element-llistat-viatges">
-          <div class="col-xs-12 contenidor-viatge">
+      <div class="col-xs-12 col-sm-6 col-md-4 element-llistat-boles">
+          <div class="col-xs-12 contenidor-bola">
               <div class="tag-redactor-viatge"><span class="glyphicon glyphicon-user" > </span> {{ trip.display_redactor }}</div>
-              <div class="col-xs-12 contenidor-imatge-viatge" >
-                  <div class="imatge-viatge"  style="background-image: url({{ trip.get_image_url }})" onclick="window.location='{{ trip.get_absolute_url }}'" ></div>
+              <div class="col-xs-12 contenidor-imatge-bola" >
+                  <div class="imatge-bola"  style="background-image: url({{ trip.get_image_url }})" onclick="window.location='{{ trip.get_absolute_url }}'" ></div>
               </div>
-              <div class="col-xs-12 titol-viatge">
+              <div class="col-xs-12 titol-bola">
                     <a href="{{ trip.get_absolute_url }}">{{ trip.title }}</a>
               </div>
               <div class="durada-viatge">Durada: {{trip.duration}} {% if trip.duration > 1 %} dies {% else %} dia {% endif %}</div>
@@ -38,4 +38,12 @@
     {% else %}
       <p>No hi han viatges a la llibreria.</p>
     {% endif %}       
+{% endblock %}
+
+{% block javascript %}
+    <script>
+        setTimeout(function(){
+            document.getElementById("contenidor-principal").style.opacity = 1;
+        }, 500);
+    </script>
 {% endblock %}

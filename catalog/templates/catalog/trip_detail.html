@@ -1,7 +1,6 @@
 {% extends "base_generic.html" %}
 
 {% block head %}
-<script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-beta.2/lazyload.js"></script>
 
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/tripDetails.css' %}">
@@ -19,8 +18,8 @@
 
 {% block content %}
 
-<div class="trip-detail-hero-image" style="background: url({{ trip.get_hero_url }}) bottom no-repeat">
-    <div class="trip-detail-hero-text">
+<div class="hero-image trip-detail-hero-image" style="background: url({{ trip.get_hero_url }}) bottom no-repeat">
+    <div id="contenidor-principal" class="hero-text">
           <h1>{{ trip.title }}</h1>
     </div>
 </div>
@@ -56,8 +55,8 @@
             <br>
             {% for day in trip.dayinstance_set.all|dictsort:"id" %}
             <p><span id="section{{forloop.counter}}" class="titol-dia">{{day.title}}</span> | <strong>Dia:</strong> {{ forloop.counter }} </p>
-            {% if day.day_image %}<img class="imatge-celo" src="{% static 'images/celo.png' %}"/><img class="imatge-dia lazyload" data-src="{{ day.image_url|default_if_none:'#' }}"/>{% endif %}
-            <div class="paragrafs-dia">{{day.description | safe}}</div>
+            {% if day.day_image %}<img class="imatge-celo" src="{% static 'images/celo.png' %}"/><img class="imatge-dia lazy" data-src="{{ day.image_url|default_if_none:'#' }}" />{% endif %}
+            <div class="contenidor-paragrafs">{{day.description | safe}}</div>
             <hr>
             {% endfor %}
         </div>
@@ -66,24 +65,40 @@
 
     {% block javascript %}
     <script>
+    (function(w, d){
+            w.addEventListener('LazyLoad::Initialized', function (e) {
+				w.lazyLoadInstance = e.detail.instance;
+			}, false);
+
+            var b = d.getElementsByTagName('body')[0];
+            var s = d.createElement("script");
+            var v = !("IntersectionObserver" in w) ? "8.17.0" : "10.19.0";
+            s.async = true; // This includes the script as async. See the "recipes" section for more information about async loading of LazyLoad.
+            s.src = "https://cdn.jsdelivr.net/npm/vanilla-lazyload@" + v + "/dist/lazyload.min.js";
+            w.lazyLoadOptions = {"elements_selector":".lazy","threshold":1000};
+            b.appendChild(s);
+        }(window, document));
+
 $(document).ready(function() {
 
   // Add smooth scrolling on all links inside the navbar
     $(".scroll-smooth").on('click', function(event) {
         if (this.hash !== "") {
-          event.preventDefault();
-          var hash = this.hash;
+            event.preventDefault();
+            var hash = this.hash;
 
-          $('html, body').animate({
-            scrollTop: ($(hash).offset().top-70)
-          }, 800, function(){
-
-          });
+            $('html, body').animate({
+                scrollTop: ($(hash).offset().top-70)
+            }, 800, function(){});
         }  // End if
-      });
     });
+});
 
-    lazyload();
+
+
+    setTimeout(function(){
+        document.getElementById("contenidor-principal").style.opacity = 1;
+    }, 500);
 
     var mousedownID = -1;  //Global ID of mouse down interval
     if ($(".nav.nav-pills").height()<$(".less-li").offset().top){

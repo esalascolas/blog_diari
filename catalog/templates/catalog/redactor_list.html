@@ -8,21 +8,21 @@
 {% block content %}
 
 
-   <div class="redactors-hero-image">
-        <div class="redactors-hero-text">
+   <div class="redactors-hero-image hero-image">
+        <div id="contenidor-principal" class="hero-text">
             <h1>Apassiona't</h1>
         </div>
     </div>
 
     {% if redactor_list %}
-    <div class="col-xs-12 contenidor-llistat-vaitges">
+    <div class="col-xs-12 contenidor-llistat-boles">
       {% for redactor in redactor_list %}
-      <div class="col-xs-12 col-sm-6 col-md-4 element-llistat-redactor">
-          <div class="col-xs-12 contenidor-redactor">
-              <div class="col-xs-12 contenidor-imatge-redactor" >
-                  <div class="imatge-redactor" onclick="window.location='{{ redactor.get_absolute_url }}'"  style="background-image: url({{ redactor.get_image_url }})" ></div>
+      <div class="col-xs-12 col-sm-6 col-md-4 element-llistat-boles">
+          <div class="col-xs-12 contenidor-bola">
+              <div class="col-xs-12 contenidor-imatge-bola" >
+                  <div class="imatge-bola" onclick="window.location='{{ redactor.get_absolute_url }}'"  style="background-image: url({{ redactor.get_image_url }})" ></div>
               </div>
-              <div class="col-xs-12 titol-redactor">
+              <div class="col-xs-12 titol-bola">
                     <a href="{{ redactor.get_absolute_url }}">{{ redactor.alias }}</a>
               </div>
           </div>
@@ -35,4 +35,12 @@
     {% else %}
       <p>No hi han redactors a la llibreria.</p>
     {% endif %}       
+{% endblock %}
+
+{% block javascript %}
+    <script>
+        setTimeout(function(){
+            document.getElementById("contenidor-principal").style.opacity = 1;
+        }, 500);
+    </script>
 {% endblock %}

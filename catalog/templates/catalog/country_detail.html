@@ -27,10 +27,10 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1fNMlw3X50Zx-WIY6t_2YfvutU0AC8Ag&callback=initMap"
         async defer></script>
 
-<div class="contenidor-pais">
+<div class="contenidor-dies">
     {% if country %}
-    <p><span class="titol-pais">{{ country.country_name }}</span></p>
-    <p class="text-muted">{{ country.description | safe }}</p>
+    <p><span class="titol-dia">{{ country.country_name }}</span></p>
+    <div class="contenidor-paragrafs">{{ country.description | safe }}</div>
     <div class="contenidor-llistat">
         <ul>
             {% if country.currency %} <li><span class="titol-caracteristica">Moneda utilitzada: </span>{{ country.currency }} ({{ country.currency_sign | safe }})</li> {% endif %}
