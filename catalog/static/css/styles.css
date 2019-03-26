@@ -24,6 +24,10 @@ body{
     padding: 6px 16px !important;
 }
 
+.nav-link{
+    font-weight: 600;
+}
+
 #imatge-logo{
     height: 40px;
     display: inline-block;

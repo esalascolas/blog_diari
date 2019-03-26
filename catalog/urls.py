@@ -8,6 +8,7 @@ sitemaps = {
     'trip': TripSitemap(),
     'redactor': RedactorSitemap(),
     'country': CountrySitemap(),
+    'planned-trips': PlannedTripSitemap(),
     'static': StaticSitemap(),
 }
 
@@ -20,6 +21,8 @@ urlpatterns = [
     path('writers/<str:pk>', views.RedactorDetailView.as_view(), name='redactor-detail'),
     path('countries/', views.CountryListView.as_view(), name='countries'),
     path('countries/<str:pk>', views.CountryDetailView.as_view(), name='country-detail'),
+    path('planned-trips/', views.PlannedTripListView.as_view(), name='planned-trips'),
+    path('planned-trips/<int:pk>', views.PlannedTripDetailView.as_view(), name='planned-trip-detail'),
 ]
 
 urlpatterns += [

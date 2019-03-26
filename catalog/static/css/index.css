@@ -14,9 +14,10 @@ h1{
 body{
     height: 100%;
     margin: 0;
-    background: url(../images/index_image_opt.jpg);
-    background-size: cover;
+    background: url(../images/index_image_opt.jpg) no-repeat bottom;
+    background-size: cover !important;
     background-attachment: fixed !important;
+    background-position: 50% 50%;
 }
 
 .index-container {

@@ -1,0 +1,46 @@
+{% extends "base_generic.html" %}
+
+{% block head %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/plannedTripList.css' %}">
+{% endblock %}
+
+{% block content %}
+
+
+   <div class="plannedTrip-hero-image hero-image">
+        <div id="contenidor-principal" class="hero-text">
+            <h1>Aventura't</h1>
+        </div>
+    </div>
+
+    {% if plannedtrip_list %}
+    <div class="col-xs-12 contenidor-llistat-boles">
+      {% for plannedtrip in plannedtrip_list %}
+      <div class="col-xs-12 col-sm-6 col-md-4 element-llistat-boles">
+          <div class="col-xs-12 contenidor-bola">
+              <div class="col-xs-12 contenidor-imatge-bola" >
+                  <div class="imatge-bola" onclick="window.location='{{ plannedtrip.get_absolute_url }}'"  style="background-image: url('{{ plannedtrip.get_image_url }}')" ></div>
+              </div>
+              <div class="col-xs-12 titol-bola">
+                    <a href="{{ plannedtrip.get_absolute_url }}">{{ plannedtrip.title }}</a>
+              </div>
+          </div>
+
+      </div>
+
+      {% endfor %}
+
+    </div>
+    {% else %}
+      <p>No hi han redactors a la llibreria.</p>
+    {% endif %}       
+{% endblock %}
+
+{% block javascript %}
+    <script>
+        setTimeout(function(){
+            document.getElementById("contenidor-principal").style.opacity = 1;
+        }, 500);
+    </script>
+{% endblock %}

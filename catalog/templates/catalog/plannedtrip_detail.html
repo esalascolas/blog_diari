@@ -3,12 +3,12 @@
 {% block head %}
 
 {% load static %}
-<link rel="stylesheet" href="{% static 'css/tripDetails.css' %}">
+<link rel="stylesheet" href="{% static 'css/plannedtripDetails.css' %}">
 
 {% endblock%}
 
 {% block DiesNavbar %}
-    {% for day in trip.dayinstance_set.all|dictsort:"id" %}
+    {% for day in plannedtrip.planstatusupdate_set.all|dictsort:"id" %}
         <a class="scroll-smooth link-dies" href="#section{{forloop.counter}}" onclick="gestionaNavBarDies()">{{day.title}}</a>
     {% endfor %}
     <a href="javascript:void(0);" style="font-size:15px; right: 45px;" class="icon"  onclick="gestionaNavBarDies()">Dies &#x25BC;</a>
@@ -18,9 +18,9 @@
 
 {% block content %}
 
-<div class="hero-image trip-detail-hero-image" style="background: url({{ trip.get_hero_url }}) bottom no-repeat">
+<div class="hero-image trip-detail-hero-image" style="background: url('{{ plannedtrip.get_hero_url }}') bottom no-repeat">
     <div id="contenidor-principal" class="hero-text">
-          <h1>{{ trip.title }}</h1>
+          <h1>{{ plannedtrip.title }}</h1>
     </div>
 </div>
 
@@ -34,7 +34,7 @@
                     <span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
                 </a>
             </li>
-            {% for day in trip.dayinstance_set.all|dictsort:"id" %}
+            {% for day in plannedtrip.planstatusupdate_set.all|dictsort:"id" %}
                 <li  class="scrollable-li{% if forloop.counter == 1 %} active{% endif %}">
                     <a class="scroll-smooth" href="#section{{forloop.counter}}">{{day.title}}</a>
                 </li>
@@ -50,10 +50,10 @@
         <div   style="width: 220px;"></div>
         <div class="contenidor-dies col-sm-9 col-xs-12">
             <div class="resum-viatge">
-                {{ trip.summary | safe }}
+                {{ plannedtrip.summary | safe }}
             </div>
             <br>
-            {% for day in trip.dayinstance_set.all|dictsort:"id" %}
+            {% for day in plannedtrip.planstatusupdate_set.all|dictsort:"id" %}
             <p><span id="section{{forloop.counter}}" class="titol-dia">{{day.title}}</span> | <strong>Dia:</strong> {{ forloop.counter }} </p>
             {% if day.day_image %}<img class="imatge-celo" src="{% static 'images/celo.png' %}"/><img class="imatge-dia lazy" data-src="{{ day.image_url|default_if_none:'#' }}" />{% endif %}
             <div class="contenidor-paragrafs">{{day.description | safe}}</div>
@@ -99,9 +99,9 @@ $(document).ready(function() {
     setTimeout(function(){
         document.getElementById("contenidor-principal").style.opacity = 1;
     }, 500);
-
+    
     var mousedownID = -1;  //Global ID of mouse down interval
-    if ($(".nav.nav-pills").height()<$(".less-li").offset().top){
+    if ($(".nav.nav-pills").height()>$(".less-li").offset().top){
         $(".less-li")[0].classList.add("sota")
     }
     comprovaScrollSuperior();
@@ -125,7 +125,7 @@ $(document).ready(function() {
         var lessLiEl = document.getElementsByClassName("less-li")[0];
         var LessLi = $(".less-li");
 
-        if(ScrollableLi.last().offset() <= LessLi.offset().top -ScrollableLi.last().height()){
+        if(ScrollableLi.last().offset().top <= LessLi.offset().top -ScrollableLi.last().height()){
             lessLiEl.classList.add("desabilitat");
             return 0
         }

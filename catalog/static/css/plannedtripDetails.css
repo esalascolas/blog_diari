@@ -1,0 +1,155 @@
+.affix {
+     top: 205px;
+     z-index: 999 !important;
+  }
+
+.trip-detail-hero-text h1{
+    font-size: 65px;
+    color: #8e4941;
+}
+
+#myScrollspy{
+    padding: 0;
+}
+
+#myScrollspy .active a {
+    background: #8e4941;
+    box-shadow: 2px 2px 10px #a9a9a9;
+    color: white;
+}
+.active{
+    background-color: inherit;
+    color: inherit;
+}
+
+#myScrollspy a {
+    background: #d8d8d8;
+    color: #333;
+    width: 220px;
+}
+
+img.imatge-dia {
+     max-width: 685px;
+    height: 50vh;
+    margin: 0 auto;
+    width: 100%;
+    object-fit: cover;
+    /* -webkit-animation: filter-animation 12s infinite; */
+    display: flex;
+    position: relative;
+    top: -33px;
+    padding: 45px 36px 70px 36px;
+    transform: rotate(-1deg);
+    background: white;
+    box-shadow: 1px 1px 5px #3b3b3b;
+}
+
+
+img.imatge-celo {
+    position: relative;
+    top: -6px;
+    display: flex;
+    z-index: 2;
+    margin: 0 auto;
+    transform: rotate(-8deg);
+}
+
+@-webkit-keyframes filter-animation {
+    0% {
+        -webkit-filter: brightness(100%);
+    }
+
+    50% {
+        -webkit-filter: brightness(150%);
+    }
+    100% {
+        -webkit-filter: brightness(100%);
+    }
+}
+
+.resum-viatge{
+    border: 2px #8e4941 dashed;
+    border-radius: 40px;
+    text-align: justify;
+    padding: 13px 25px;
+    font-weight: 600;
+    color: #777;
+}
+
+.contenidor-grup{
+    display: inline-flex;
+    position: relative;
+}
+
+
+li.scrollable-li {
+    -webkit-transition: top 0.15s ease;
+    -moz-transition: top 0.15s ease;
+    -ms-transition: top 0.15s ease;
+    -o-transition: top 0.15s ease;
+    transition: all 0.15s ease;
+}
+
+.more-li, .less-li{
+    z-index: 2;
+    text-align: center;
+    -webkit-transition: background-color 0.25s ease;
+    -moz-transition: background-color 0.25s ease;
+    -ms-transition: background-color 0.25s ease;
+    -o-transition: background-color 0.25s ease;
+    transition: background-color 0.25s ease;
+}
+
+.less-li.sota{
+    position: absolute;
+    bottom: 0;
+}
+
+.more-li a, .less-li a{
+    background: #8e4941 !important;
+    color: white !important;
+}
+
+.more-li.desabilitat a, .less-li.desabilitat a{
+    background: #d8d8d8 !important;
+    cursor: default;
+    color: #b3aeae !important;
+}
+
+#top-navigation-panel{
+    top: 52px;
+    background-color: #333333;
+    height: 52px;
+    color: #f2f2f2;
+    border: none;
+}
+
+#top-navigation-panel li{
+    background-color: #333;
+    color:#f2f2f2;
+}
+
+#myTopnav{
+    max-height: 100vh;
+    overflow: auto;
+    z-index: 3;
+}
+
+@media screen and (max-width: 600px) {
+    .trip-detail-hero-text h1 {
+        font-size: 60px
+    }
+}
+
+@media screen and (max-width: 430px) {
+    .trip-detail-hero-text h1 {
+        font-size: 48px
+    }
+}
+
+
+@media screen and (max-width: 380px) {
+    .trip-detail-hero-text h1 {
+        font-size: 41px
+    }
+}
