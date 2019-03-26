@@ -54,7 +54,7 @@
             </div>
             <br>
             {% for day in plannedtrip.planstatusupdate_set.all|dictsort:"id" %}
-            <p><span id="section{{forloop.counter}}" class="titol-dia">{{day.title}}</span> | <strong>Dia:</strong> {{ forloop.counter }} </p>
+            <p><span id="section{{forloop.counter}}" class="titol-dia">{{day.title}}</span></p>
             {% if day.day_image %}<img class="imatge-celo" src="{% static 'images/celo.png' %}"/><img class="imatge-dia lazy" data-src="{{ day.image_url|default_if_none:'#' }}" />{% endif %}
             <div class="contenidor-paragrafs">{{day.description | safe}}</div>
             <hr>
