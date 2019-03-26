@@ -53,11 +53,11 @@
     {% url 'index' as index_url %}
     {% if request.get_full_path != index_url %}
     <div class="topnav" id="myTopnav">
-          <a href="{% url 'index' %}" class="inici nav-link"><img id="imatge-logo" alt="Endinsa't" src="{% static 'favicons/favicon-96x96.png' %}"/>Endinsa't</a>
-          <a class="nav-link" href="{% url 'trips' %}">Viatges</a>
-          <a class="nav-link" href="{% url 'redactors' %}">Redactors</a>
-          <a class="nav-link" href="{% url 'countries' %}">Països</a>
-          <a class="nav-link" href="{% url 'planned-trips' %}">Noves aventures</a>
+          <a href="{% url 'index' %}" class="inici"><img id="imatge-logo" alt="Endinsa't" src="{% static 'favicons/favicon-96x96.png' %}"/>Endinsa't</a>
+          <a href="{% url 'trips' %}">Viatges</a>
+          <a href="{% url 'redactors' %}">Redactors</a>
+          <a href="{% url 'countries' %}">Països</a>
+          <a href="{% url 'planned-trips' %}">Noves aventures</a>
           <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="gestionaNavBar()">&#9776;</a>
 
           {% block DiesNavbar %}
