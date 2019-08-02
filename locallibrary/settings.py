@@ -24,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', '"O,<S4ug[axs+[|kHCZ}q0B?dx]eM)ZTJP\LSsw;"AE^y,JRG=}^jj#ev')
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
     'endinsat-aventura.appspot.com',
