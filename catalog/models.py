@@ -12,15 +12,9 @@ class Trip(models.Model):
     departure_date = models.DateField('departure', null=True, blank=True)
     arrival_date = models.DateField('arrival', null=True, blank=True)
     duration = models.IntegerField(help_text='Durada del viatge en dies', default=0)
-    route_trip_image = models.CharField(max_length=200, default='', help_text='Nom de la imatge guardada a la carpeta static ex: /images/trip.jpg')
-    url_static = models.CharField(max_length=200, default='', help_text='Ruta a la carpeta /static ex: de "/static/marroc" només "/marroc"')
-    LOAN_STATUS = (
-        ('e', 'Eye on it'),
-        ('p', 'Planed'),
-        ('o', 'On voyage'),
-        ('d', 'Done'),
-    )
-    status = models.CharField(max_length=1, choices=LOAN_STATUS, blank=True, default='e', help_text='Status of the trip')
+    round_image = models.ImageField(upload_to='trip', blank=True, help_text="Imatge rodona")
+    hero_image = models.ImageField(upload_to='trip', blank=True, help_text="Imatge hero")
+    completed = models.BooleanField(default=False, help_text="El diari està acabat")
 
     def __str__(self):
         return self.title
@@ -38,19 +32,22 @@ class Trip(models.Model):
     def get_absolute_url(self):
         return reverse('trip-detail', args=[str(self.id)])
 
-    def get_image_url(self):
-        return static(self.route_trip_image)
-
-    def get_hero_url(self):
-        return static('images' + self.url_static + '/hero.jpg')
-
     def display_country(self):
         return ', '.join([country.country_name for country in self.country.all()[:3]])
+    display_country.short_description = 'Country'
 
     def display_redactor(self):
         return ', '.join([redactor.alias for redactor in self.redactor.all()[:3]])
 
-    display_country.short_description = 'Country'
+    @property
+    def round_image_url(self):
+        if self.round_image and hasattr(self.round_image, 'url'):
+            return self.round_image.url
+
+    @property
+    def hero_image_url(self):
+        if self.hero_image and hasattr(self.hero_image, 'url'):
+            return self.hero_image.url
 
 
 # Instància dia
@@ -87,6 +84,8 @@ class Redactor(models.Model):
     alias = models.CharField(max_length=50)
     date_of_birth = models.DateField('Birth: ', null=True, blank=True)
     description = models.TextField(max_length=5000, default="")
+    round_image = models.ImageField(upload_to='trip', blank=True, help_text="Imatge rodona")
+    hero_image = models.ImageField(upload_to='redactor', blank=True, help_text="Imatge hero")
 
     def __str__(self):
         return self.alias
@@ -94,11 +93,15 @@ class Redactor(models.Model):
     def get_absolute_url(self):
         return reverse('redactor-detail', args=[str(self.id)])
 
-    def get_image_url(self):
-        return static('images/' + self.alias.lower() + ".jpg")
+    @property
+    def round_image_url(self):
+        if self.round_image and hasattr(self.round_image, 'url'):
+            return self.round_image.url
 
-    def get_hero_url(self):
-        return static('images/' + self.alias.lower() + '/hero.jpg')
+    @property
+    def hero_image_url(self):
+        if self.hero_image and hasattr(self.hero_image, 'url'):
+            return self.hero_image.url
 
     class Meta:
         ordering = ["last_name", "first_name"]
@@ -108,7 +111,6 @@ class Redactor(models.Model):
 class Country(models.Model):
     country_name = models.CharField(max_length=100, default="")
     country_code = models.CharField(max_length=3, default="")
-    url_imatge_bandera = models.CharField(max_length=500, default="")
     description = models.CharField(max_length=1500, default="")
     currency = models.CharField(max_length=30, default="")
     currency_sign = models.CharField(max_length=15, default="")
@@ -122,6 +124,11 @@ class Country(models.Model):
     def get_absolute_url(self):
         return reverse('country-detail', args=[str(self.id)])
 
+    @property
+    def flag_image_url(self):
+        if self.flag_image and hasattr(self.flag_image, 'url'):
+            return self.flag_image.url
+
 
 # Classe planificació de viatges
 class PlannedTrip(models.Model):
@@ -132,18 +139,9 @@ class PlannedTrip(models.Model):
     departure_date = models.DateField('departure', null=True, blank=True)
     arrival_date = models.DateField('arrival', null=True, blank=True)
     duration = models.IntegerField(help_text='Durada del viatge en dies (aprox)', default=0)
-    route_trip_image = models.CharField(max_length=200, default='',
-                                        help_text='Nom de la imatge guardada a la carpeta static ex: /images/trip.jpg')
-    url_static = models.CharField(max_length=200, default='',
-                                  help_text='Ruta a la carpeta /static ex: de "/static/marroc" només "/marroc"')
-    LOAN_STATUS = (
-        ('e', 'Eye on it'),
-        ('p', 'Planed'),
-        ('o', 'On voyage'),
-        ('d', 'Done'),
-    )
-    status = models.CharField(max_length=1, choices=LOAN_STATUS, blank=True, default='e',
-                              help_text='Status of the trip')
+    round_image = models.ImageField(upload_to='trip', blank=True, help_text="Imatge rodona")
+    hero_image = models.ImageField(upload_to='plannedtrip', blank=True, help_text="Imatge hero")
+    completed = models.BooleanField(default=False, help_text="El diari està acabat")
 
     def __str__(self):
         return self.title
@@ -161,19 +159,22 @@ class PlannedTrip(models.Model):
     def get_absolute_url(self):
         return reverse('planned-trip-detail', args=[str(self.id)])
 
-    def get_image_url(self):
-        return static(self.route_trip_image)
-
-    def get_hero_url(self):
-        return static('images/' + self.url_static + '/hero.jpg')
-
     def display_country(self):
         return ', '.join([country.country_name for country in self.country.all()[:3]])
+    display_country.short_description = 'Country'
 
     def display_redactor(self):
         return ', '.join([redactor.alias for redactor in self.voyagers.all()[:3]])
 
-    display_country.short_description = 'Country'
+    @property
+    def round_image_url(self):
+        if self.round_image and hasattr(self.round_image, 'url'):
+            return self.round_image.url
+
+    @property
+    def hero_image_url(self):
+        if self.hero_image and hasattr(self.hero_image, 'url'):
+            return self.hero_image.url
 
 
 # Instància dia
@@ -182,7 +183,7 @@ class PlanStatusUpdate(models.Model):
     travel = models.ForeignKey('PlannedTrip', on_delete=models.SET_NULL, null=True)
     update_date = models.DateField('updateDate', null=True, blank=True)
     description = models.TextField(max_length="5000")
-    day_image = models.ImageField(upload_to='day', blank=True)
+    day_image = models.ImageField(upload_to='plannedtripDay', blank=True)
 
     def __str__(self):
         return self.title

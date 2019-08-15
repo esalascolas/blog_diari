@@ -1,5 +1,10 @@
 {
- "name": "App",
+ "lang":"cat",
+ "description":"Blog de viatges. Endinsa't en aventures dels nostres redactors!",
+ "name": "Endinsa'ta l'aventura",
+ "sort_name": "Endinsa't",
+ "start:url": "/index/",
+ "permissions": ["*.endinsat.com"],
  "icons": [
   {
    "src": "\/android-icon-36x36.png",

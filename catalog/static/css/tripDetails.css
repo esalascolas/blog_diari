@@ -74,7 +74,7 @@ img.imatge-celo {
     text-align: justify;
     padding: 13px 25px;
     font-weight: 600;
-    color: #777;
+    color: #616161;
 }
 
 .contenidor-grup{
@@ -153,4 +153,21 @@ li.scrollable-li {
     .trip-detail-hero-text h1 {
         font-size: 41px
     }
+}
+
+.completed-message {
+    background: white;
+    box-sizing: border-box;
+    padding: 1px 20px;
+    box-shadow: 1px 1px 5px #333;
+}
+
+.footer-social-container {
+    padding: 0 0 10px 0;
+}
+
+.completed-message .footer-social-container a {
+    font-size: 35px;
+    padding: 8px;
+    width: 51px;
 }

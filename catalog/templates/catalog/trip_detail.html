@@ -18,9 +18,9 @@
 
 {% block content %}
 
-<div class="hero-image trip-detail-hero-image" style="background: url({{ trip.get_hero_url }}) bottom no-repeat">
+<div class="hero-image trip-detail-hero-image" style="background: url({{trip.hero_image_url|default_if_none:'#' }}) bottom no-repeat">
     <div id="contenidor-principal" class="hero-text">
-          <h1>{{ trip.title }}</h1>
+          <h1 property="trip">{{ trip.title }}</h1>
     </div>
 </div>
 
@@ -30,7 +30,7 @@
         <nav class="col-sm-3 hidden-xs" id="myScrollspy">
           <ul class="nav nav-pills nav-stacked" data-spy="affix" data-offset-top="256" style="margin-left: 20px;max-height: 348px;overflow: hidden;">
             <li class="more-li" onmousedown="mousedownLess()">
-                <a class="scroll-smooth" href="javascript:void(0)">
+                <a class="scroll-smooth" href="javascript:void(0)" aria-label="up">
                     <span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
                 </a>
             </li>
@@ -40,7 +40,7 @@
                 </li>
              {% endfor %}
               <li class="less-li" onmousedown="mousedownMore()">
-                  <a class="scroll-smooth" href="javascript:void(0)">
+                  <a class="scroll-smooth" href="javascript:void(0)"  aria-label="down">
                       <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
                   </a>
               </li>
@@ -48,18 +48,37 @@
 
         </nav>
         <div   style="width: 220px;"></div>
-        <div class="contenidor-dies col-sm-9 col-xs-12">
-            <div class="resum-viatge">
+        <main class="contenidor-dies col-sm-9 col-xs-12">
+            <div class="resum-viatge" property="trip-resume">
                 {{ trip.summary | safe }}
             </div>
             <br>
             {% for day in trip.dayinstance_set.all|dictsort:"id" %}
-            <p><span id="section{{forloop.counter}}" class="titol-dia">{{day.title}}</span> | <strong>Dia:</strong> {{ forloop.counter }} </p>
-            {% if day.day_image %}<img class="imatge-celo" src="{% static 'images/celo.png' %}"/><img class="imatge-dia lazy" data-src="{{ day.image_url|default_if_none:'#' }}" />{% endif %}
-            <div class="contenidor-paragrafs">{{day.description | safe}}</div>
-            <hr>
+                <article>
+                    <h3><span id="section{{forloop.counter}}" class="titol-dia" property="v:day-title">{{day.title}}</span> | <strong>Dia:</strong> {{ forloop.counter }} </h3>
+                    {% if day.day_image %}
+                        <img class="imatge-celo" alt="celo" src="{% static 'images/celo.png' %}"/>
+                        <img class="imatge-dia lazy" alt="Foto {{day.title}}" data-src="{{ day.image_url|default_if_none:'#' }}" />
+                    {% endif %}
+                    <div class="contenidor-paragrafs">{{day.description | safe}}</div>
+                </article>
+
+                <hr>
             {% endfor %}
-        </div>
+                <aside class="completed-message">
+                    {% if trip.completed %}
+                        <h3 class="titol-completed titol-dia">Aquí s'acaba el diari {{ trip.title }}.</h3>
+                        <p class="missatge-completed">No et perdis cap novetat i segueix-nos a les xarxes socials!</p>
+                    {% else %}
+                        <h3 class="titol-completed titol-dia">El diari {{ trip.title }} continua.</h3>
+                        <p class="missatge-completed">No et perdis les noves publicacions, t'avisarem a través de les xarxes socials!</p>
+                    {% endif %}
+                    <div class="footer-social-container">
+                        <a target="_blank" rel="noopener noreferrer" aria-label="instagram" href="https://instagram.com/_u/endinsat.aventura/" class="fa fa-instagram"></a>
+                        <a target="_blank" rel="noopener noreferrer" aria-label="twitter" href="https://twitter.com/endinsat_com" class="fa fa-twitter"></a>
+                    </div>
+                </aside>
+        </main>
     </div>
 </div>
 

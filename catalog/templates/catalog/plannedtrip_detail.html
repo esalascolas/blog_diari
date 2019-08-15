@@ -18,9 +18,9 @@
 
 {% block content %}
 
-<div class="hero-image trip-detail-hero-image" style="background: url('{{ plannedtrip.get_hero_url }}') bottom no-repeat">
+<div class="hero-image trip-detail-hero-image" style="background: url('{{ plannedtrip.hero_image_url|default_if_none:'#'}}') bottom no-repeat">
     <div id="contenidor-principal" class="hero-text">
-          <h1>{{ plannedtrip.title }}</h1>
+          <h1 property="title">{{ plannedtrip.title }}</h1>
     </div>
 </div>
 
@@ -30,7 +30,7 @@
         <nav class="col-sm-3 hidden-xs" id="myScrollspy">
           <ul class="nav nav-pills nav-stacked" data-spy="affix" data-offset-top="256" style="margin-left: 20px;max-height: 348px;overflow: hidden;">
             <li class="more-li" onmousedown="mousedownLess()">
-                <a class="scroll-smooth" href="javascript:void(0)">
+                <a class="scroll-smooth" href="javascript:void(0)" aria-label="up">
                     <span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
                 </a>
             </li>
@@ -40,7 +40,7 @@
                 </li>
              {% endfor %}
               <li class="less-li" onmousedown="mousedownMore()">
-                  <a class="scroll-smooth" href="javascript:void(0)">
+                  <a class="scroll-smooth" href="javascript:void(0)" aria-label="down">
                       <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
                   </a>
               </li>
@@ -48,18 +48,24 @@
 
         </nav>
         <div   style="width: 220px;"></div>
-        <div class="contenidor-dies col-sm-9 col-xs-12">
-            <div class="resum-viatge">
+        <main class="contenidor-dies col-sm-9 col-xs-12">
+            <div class="resum-viatge" property="planned-trip-resume">
                 {{ plannedtrip.summary | safe }}
             </div>
             <br>
             {% for day in plannedtrip.planstatusupdate_set.all|dictsort:"id" %}
-            <p><span id="section{{forloop.counter}}" class="titol-dia">{{day.title}}</span></p>
-            {% if day.day_image %}<img class="imatge-celo" src="{% static 'images/celo.png' %}"/><img class="imatge-dia lazy" data-src="{{ day.image_url|default_if_none:'#' }}" />{% endif %}
-            <div class="contenidor-paragrafs">{{day.description | safe}}</div>
+            <article>
+                <h3 id="section{{forloop.counter}}"  property="planned-day-title" class="titol-dia">{{day.title}}</h3>
+                {% if day.day_image %}
+                    <img class="imatge-celo" alt="celo" src="{% static 'images/celo.png' %}"/>
+                    <img class="imatge-dia lazy" alt="Imatge {{day.title}}" data-src="{{ day.image_url|default_if_none:'#' }}" />
+                {% endif %}
+                <div class="contenidor-paragrafs">{{day.description | safe}}</div>
+            </article>
+
             <hr>
             {% endfor %}
-        </div>
+        </main>
     </div>
 </div>
 

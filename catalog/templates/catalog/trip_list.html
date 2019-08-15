@@ -22,12 +22,12 @@
           <div class="col-xs-12 contenidor-bola">
               <div class="tag-redactor-viatge"><span class="glyphicon glyphicon-user" > </span> {{ trip.display_redactor }}</div>
               <div class="col-xs-12 contenidor-imatge-bola" >
-                  <div class="imatge-bola"  style="background-image: url({{ trip.get_image_url }})" onclick="window.location='{{ trip.get_absolute_url }}'" ></div>
+                  <div class="imatge-bola"  style="background-image: url({{trip.round_image_url|default_if_none:'#' }})" onclick="window.location='{{ trip.get_absolute_url }}'" ></div>
               </div>
               <div class="col-xs-12 titol-bola">
-                    <a href="{{ trip.get_absolute_url }}">{{ trip.title }}</a>
+                    <a href="{{ trip.get_absolute_url }}" property="v:trip">{{ trip.title }}</a>
               </div>
-              <div class="durada-viatge">Durada: {{trip.duration}} {% if trip.duration > 1 %} dies {% else %} dia {% endif %}</div>
+              <div class="durada-viatge" property="v:trip-length">Durada: {{trip.duration}} {% if trip.duration > 1 %} dies {% else %} dia {% endif %}</div>
           </div>
 
       </div>
@@ -38,6 +38,11 @@
     {% else %}
       <p>No hi han viatges a la llibreria.</p>
     {% endif %}       
+{% endblock %}
+
+
+{% block footer %}
+    HELLOO
 {% endblock %}
 
 {% block javascript %}

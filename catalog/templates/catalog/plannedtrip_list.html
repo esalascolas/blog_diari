@@ -20,7 +20,7 @@
       <div class="col-xs-12 col-sm-6 col-md-4 element-llistat-boles">
           <div class="col-xs-12 contenidor-bola">
               <div class="col-xs-12 contenidor-imatge-bola" >
-                  <div class="imatge-bola" onclick="window.location='{{ plannedtrip.get_absolute_url }}'"  style="background-image: url('{{ plannedtrip.get_image_url }}')" ></div>
+                  <div class="imatge-bola" onclick="window.location='{{ plannedtrip.get_absolute_url }}'"  style="background-image: url('{{ plannedtrip.round_image_url|default_if_none:'#' }}')" ></div>
               </div>
               <div class="col-xs-12 titol-bola">
                     <a href="{{ plannedtrip.get_absolute_url }}">{{ plannedtrip.title }}</a>

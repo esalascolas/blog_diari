@@ -13,11 +13,11 @@ def mobile(request):
     else:
         return False
 
+
 def index(request):
     """
     View function for home page of site.
     """
-
    # Render the HTML template index_desktop.html with the data in the context variable
     if mobile(request):
 

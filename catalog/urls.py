@@ -1,8 +1,7 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
 from .sitemaps import *
 from django.contrib.sitemaps.views import sitemap
-
 
 sitemaps = {
     'trip': TripSitemap(),

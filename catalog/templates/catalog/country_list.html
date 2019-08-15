@@ -20,7 +20,7 @@
       <div class="col-xs-12 col-sm-6 col-md-4 element-llistat-boles">
           <div class="col-xs-12 contenidor-bola">
               <div class="col-xs-12 contenidor-imatge-bola" >
-                  <div class="imatge-bola" onclick="window.location='{{ country.get_absolute_url }}'"  style="background-image: url({{ country.url_imatge_bandera }})" ></div>
+                  <div class="imatge-bola" onclick="window.location='{{ country.get_absolute_url }}'"  style="background-image: url({{ country.flag_image_url|default_if_none:'#' }})" ></div>
               </div>
               <div class="col-xs-12 titol-bola">
                     <a href="{{ country.get_absolute_url }}">{{ country.country_name }}</a>

@@ -9,17 +9,17 @@
 
 {% block content %}
 
-<div class="hero-image" style="background: url({{ redactor.get_hero_url }}) bottom no-repeat">
+<div class="hero-image" style="background: url({{ redactor.hero_image_url|default_if_none:'#'}}) bottom no-repeat">
     <div id="contenidor-principal" class="hero-text">
           <h1>{{ redactor.alias }}</h1>
     </div>
 </div>
 
-<div class="contenidor-dies">
+<main class="contenidor-dies">
     <hr>
-    <p><span class="titol-dia">{{redactor.first_name}}</span> </p>
+    <h3 class="titol-dia">{{redactor.first_name}}</h3>
     <div class="contenidor-paragrafs">{{redactor.description | safe}}</div>
-</div>
+</main>
 {% endblock %}
 
 {% block javascript %}

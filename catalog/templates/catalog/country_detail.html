@@ -27,15 +27,16 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1fNMlw3X50Zx-WIY6t_2YfvutU0AC8Ag&callback=initMap"
         async defer></script>
 
-<div class="contenidor-dies">
+<main class="contenidor-dies">
     {% if country %}
-    <p><span class="titol-dia">{{ country.country_name }}</span></p>
-    <div class="contenidor-paragrafs">{{ country.description | safe }}</div>
+
+    <h3 property="v:country" class="titol-dia">{{ country.country_name }}</h3>
+    <div property="v:description" class="contenidor-paragrafs">{{ country.description | safe }}</div>
     <div class="contenidor-llistat">
         <ul>
-            {% if country.currency %} <li><span class="titol-caracteristica">Moneda utilitzada: </span>{{ country.currency }} ({{ country.currency_sign | safe }})</li> {% endif %}
-            {% if country.cant_miss %} <li><span class="titol-caracteristica">No et perdis: </span>{{ country.cant_miss }}</li> {% endif %}
-            {% if country.traditional_food %} <li><span class="titol-caracteristica">Menjar típic: </span>{{ country.traditional_food }}</li> {% endif %}
+            {% if country.currency %} <li property="v:coin"><span class="titol-caracteristica">Moneda utilitzada: </span>{{ country.currency }} ({{ country.currency_sign | safe }})</li> {% endif %}
+            {% if country.cant_miss %} <li property="v:can-not-miss"><span class="titol-caracteristica">No et perdis: </span>{{ country.cant_miss }}</li> {% endif %}
+            {% if country.traditional_food %} <li property="v:traditional-food"><span class="titol-caracteristica">Menjar típic: </span>{{ country.traditional_food }}</li> {% endif %}
         </ul>
     </div>
 
@@ -43,5 +44,5 @@
     <div>No es disposa d'informació del país.</div>
     {% endif %}
 
-  </div>
+  </main>
 {% endblock %}

@@ -13,15 +13,15 @@
     <source src="{% static 'video/VID_20180727_141049.mp4' %}" type="video/mp4">
 </video>
 <div class="contenidor-titol">
-    <h1 id="titol-pagina">
+    <h1 id="titol-pagina" property="titol">
         Endinsa't a l'aventura
     </h1>
 </div>
 
 <div class="contenidor-links">
-    <a class="link-index" href="{% url 'trips' %}"><img class="imatge-logo" src="{% static 'images/logos/viatges.png' %}"/>Viatges</a>
-    <a class="link-index" href="{% url 'planned-trips' %}"><img class="imatge-logo" src="{% static 'images/logos/plans.png' %}"/>Plans</a>
-    <a class="link-index" href="{% url 'countries' %}"><img class="imatge-logo" src="{% static 'images/logos/paisos.png' %}"/>Països</a>
+    <a class="link-index" href="{% url 'trips' %}" porperty="v:viatges"><img class="imatge-logo" alt="viatges" src="{% static 'images/logos/viatges.png' %}"/>Viatges</a>
+    <a class="link-index" href="{% url 'planned-trips' %}" property="v.plans-de-viatge"><img class="imatge-logo" alt="plans de viatge" src="{% static 'images/logos/plans.png' %}"/>Plans</a>
+    <a class="link-index" href="{% url 'countries' %}" property="v:països"><img class="imatge-logo" alt="països" src="{% static 'images/logos/paisos.png' %}"/>Països</a>
 </div>
 {% endblock %}
 

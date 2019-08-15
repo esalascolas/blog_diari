@@ -24,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', '"O,<S4ug[axs+[|kHCZ}q0B?dx]eM)ZTJP\LSsw;"AE^y,JRG=}^jj#ev')
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     'endinsat-aventura.appspot.com',
@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.sitemaps',
     'storages',
     'catalog',
+    'robots'
 ]
 
 MIDDLEWARE = [
@@ -66,7 +67,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [],
-        'APP_DIRS': True,
+        #'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -75,12 +76,23 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.media',
             ],
+            'loaders': [
+                ('django.template.loaders.cached.Loader',
+                    [
+                        'django.template.loaders.filesystem.Loader',
+                        'django.template.loaders.app_directories.Loader',
+
+                    ]
+                 ),
+            ]
         },
     },
 ]
 
 WSGI_APPLICATION = 'locallibrary.wsgi.application'
 
+SITE_ID = 5
+ROBOTS_CACHE_TIMEOUT = 60*60*24
 
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
@@ -139,6 +151,7 @@ USE_L10N = True
 USE_TZ = True
 
 
+
 # Static files (CSS, JavaScript, Images)
 
 # The absolute path to the directory where collectstatic will collect static files for deployment.
@@ -155,4 +168,5 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 try:
     from .local_settings import *
 except ImportError:
-    pass
+    SECURE_SSL_REDIRECT = True
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')

@@ -15,15 +15,15 @@
     <img id="bg_image" src="{% static 'images/IMG_20181223_123202.jpg' %}">
 </picture>
 <div class="contenidor-titol">
-    <h1 id="titol-pagina">
+    <h1 id="titol-pagina" property="v:titol">
         Endinsa't a l'aventura
     </h1>
 </div>
 
 <div class="contenidor-links">
-    <a class="link-index" href="{% url 'trips' %}"><img class="imatge-logo" src="{% static 'images/logos/viatges.png' %}"/>Viatges</a>
-    <a class="link-index" href="{% url 'planned-trips' %}"><img class="imatge-logo" src="{% static 'images/logos/plans.png' %}"/>Plans</a>
-    <a class="link-index" href="{% url 'countries' %}"><img class="imatge-logo" src="{% static 'images/logos/paisos.png' %}"/>Països</a>
+    <a class="link-index" href="{% url 'trips' %}" property="v:viatges"><img class="imatge-logo" alt="viatges" src="{% static 'images/logos/viatges.png' %}"/>Viatges</a>
+    <a class="link-index" href="{% url 'planned-trips' %}" property="v:plans-de-viatge"><img class="imatge-logo" alt="plans de viatge" src="{% static 'images/logos/plans.png' %}"/>Plans</a>
+    <a class="link-index" href="{% url 'countries' %}" property="v:països"><img class="imatge-logo" alt="països" src="{% static 'images/logos/paisos.png' %}"/>Països</a>
 </div>
 
 
@@ -35,14 +35,6 @@
     var image = document.getElementById("bg_image");
     image.onload = function() {
         document.getElementById("loading").classList.add("disapear");
-        document.getElementsByTagName("body")[0].addEventListener("mousemove", calcFilter);
-        function calcFilter(ev){
-            var x = ev.clientX;
-            var y = ev.clientY;
-            var contrast = 1+(y/($(window).height()))*0.1;
-            var sepia = 0.1+x/($(window).width());
-            document.getElementById("bg_image").style.filter = "contrast("+contrast+") sepia("+sepia+")";
-        }
     };
 </script>
 {% endblock %}
