@@ -20,7 +20,6 @@ def index(request):
     """
    # Render the HTML template index_desktop.html with the data in the context variable
     if mobile(request):
-
         return render(
             request,
             'index_mobile.html'
